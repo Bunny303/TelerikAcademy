@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolPrototypalOOP", "SchoolPrototypalOOP\SchoolPrototypalOOP.csproj", "{0ACD1483-811C-41C8-8F40-530D838EFB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolClassicalOOP", "SchoolClassicalOOP\SchoolClassicalOOP.csproj", "{3FE31DCB-4A0D-4B25-9484-F5BF76818AA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSliderControl", "ImageSliderControl\ImageSliderControl.csproj", "{585AD5D5-826F-4687-8354-A3DB5EEE51C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteSitesBar", "FavoriteSitesBar\FavoriteSitesBar.csproj", "{CF21983D-BF50-45BB-B906-BA71E2C113CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ACD1483-811C-41C8-8F40-530D838EFB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACD1483-811C-41C8-8F40-530D838EFB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACD1483-811C-41C8-8F40-530D838EFB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACD1483-811C-41C8-8F40-530D838EFB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE31DCB-4A0D-4B25-9484-F5BF76818AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FE31DCB-4A0D-4B25-9484-F5BF76818AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FE31DCB-4A0D-4B25-9484-F5BF76818AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE31DCB-4A0D-4B25-9484-F5BF76818AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585AD5D5-826F-4687-8354-A3DB5EEE51C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585AD5D5-826F-4687-8354-A3DB5EEE51C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585AD5D5-826F-4687-8354-A3DB5EEE51C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585AD5D5-826F-4687-8354-A3DB5EEE51C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF21983D-BF50-45BB-B906-BA71E2C113CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF21983D-BF50-45BB-B906-BA71E2C113CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF21983D-BF50-45BB-B906-BA71E2C113CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF21983D-BF50-45BB-B906-BA71E2C113CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

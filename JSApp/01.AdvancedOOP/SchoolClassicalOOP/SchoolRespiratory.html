@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>02. School repiratory - classical OOP</title>
+    <script type="text/javascript" src="script/class-inherit.js"></script>
+    <script type="text/javascript" src="script/school-respiratory.js"></script>
+</head>
+<body>
+    <script>
+        var studentOne = new Student("Cecka", "Trynkova", 20, 3);
+        var studentTwo = new Student("Boncho", "Ganchov", 20, 6);
+        console.log(studentOne.introduce());
+        console.log(studentTwo.introduce());
+
+        var teacherOne = new Teacher("Georgi", "Georgiev", 30, "Spain");
+        var teacherTwo = new Teacher("Petyr", "Patrov", 30, "Math");
+        console.log(teacherOne.introduce());
+        console.log(teacherTwo.introduce());
+
+        var classA = new Course("A", 10, new Array(studentOne, studentTwo), teacherOne);
+        var classB = new Course("B", 2, new Array(studentOne), teacherTwo);
+        var school = new School("MayaBee", "Sofia", new Array(classA, classB));
+    </script>
+</body>
+</html>

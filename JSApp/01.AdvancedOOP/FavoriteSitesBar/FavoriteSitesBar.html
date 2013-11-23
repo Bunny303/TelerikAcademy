@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>04. Favorite sites bar</title>
+    <script type="text/javascript" src="script/class-inherit.js"></script>
+    <script type="text/javascript" src="script/favorite-sites-bar.js"></script>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <script>
+        var telerikAcademy = new URL("TelerikAkademy", "http://telerikacademy.com/");
+        var youtube = new URL("YouTube", "http://www.youtube.com/");
+        var urlOne = new URL("blog", "http://www.williammalone.com/articles/");
+        var urlTwo = new URL("article", "http://coding.smashingmagazine.com/2011/10/04/quick-look-math-animations-javascript/")
+        var javascript = new Folder("JS", [urlOne, urlTwo]);
+        var otherFolder = new Folder("stuffs");
+        var favoriteSiteBar = new FavoriteSiteBar([telerikAcademy, youtube], [javascript, otherFolder]);
+        favoriteSiteBar.display();
+        </script>
+</body>
+</html>

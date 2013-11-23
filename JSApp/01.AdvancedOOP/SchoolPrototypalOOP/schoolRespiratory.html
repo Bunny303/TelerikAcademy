@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>01. School repiratory - prototypal OOP</title>
+    <script type="text/javascript" src="script/prototype-extend.js"></script>
+    <script type="text/javascript" src="script/school-respiratory.js"></script>
+</head>
+<body>
+    <script>
+        var studentOne = Object.create(Student);
+        studentOne.init("Cecka", "Trynkova", 20, 3);
+        var studentTwo = Object.create(Student);
+        studentTwo.init("Boncho", "Ganchov", 20, 6);
+        console.log(studentOne.introduce());
+        console.log(studentTwo.introduce());
+
+        var teacherOne = Object.create(Teacher);
+        teacherOne.init("Georgi", "Georgiev", 30, "Spain");
+        var teacherTwo = Object.create(Teacher);
+        teacherTwo.init("Petyr", "Patrov", 30, "Math");
+        console.log(teacherOne.introduce());
+        console.log(teacherTwo.introduce());
+
+        var classA = Object.create(Course);
+        classA.init("A", 10, new Array(studentOne, studentTwo), teacherOne);
+        var classB = Object.create(Course);
+        classB.init("B", 2, new Array(studentOne), teacherTwo);
+        var school = Object.create(School);
+        school.init("MayaBee", "Sofia", new Array(classA, classB));
+    </script>
+</body>
+</html>

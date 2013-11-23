@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>03. Image slider control</title>
+    <script type="text/javascript" src="script/prototype-extend.js"></script>
+    <script type="text/javascript" src="script/image-slider-control.js"></script>
+    <style>
+        body{
+            margin: 10px;
+            background-color: black;
+        }
+        img {
+            margin: 5px;
+            border: 1px solid white;
+        }
+        button>img{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="slider"></div>
+        <div id="preview"></div>
+    </div>
+    <script>
+        var controler = imageSliderControl.createImageSlider();
+        controler.init("slider", "preview");
+        controler.addImage("first", "img/bunny1.jpg", "img/bunny1.jpg");
+        controler.addImage("second", "img/bunny2.jpg", "img/bunny2.jpg");
+        controler.addImage("third", "img/bunny3.jpg", "img/bunny3.jpg");
+        controler.addImage("forth", "img/bunny4.jpg", "img/bunny4.jpg");
+        controler.addImage("fifth", "img/bunny5.jpg", "img/bunny5.jpg");
+        controler.addImage("sixth", "img/bunny6.jpg", "img/bunny6.jpg");
+        controler.renderImages();
+    </script>
+</body>
+</html>
