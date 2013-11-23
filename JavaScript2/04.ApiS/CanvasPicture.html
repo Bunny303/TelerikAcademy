@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="the-canvas" width="1065" height="670"> 
+  This text is displayed if your browser does not support   
+  HTML5 Canvas. 
+</canvas>
+<script>
+    var ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.fillStyle = "grey";
+    ctx.fillRect(0, 0, 1065, 670);
+    
+    //draw head and hat
+    ctx.strokeStyle = "blue";
+    ctx.arc(205, 275, 86, 0, 2 * Math.PI, false);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+    ctx.stroke();
+    ctx.strokeStyle = "black";
+    drawEllipse(198, 203, 203, 37, "blue");
+    drawEllipse(205, 88, 108, 37, "blue");
+    ctx.moveTo(151, 88);
+    ctx.lineTo(151, 188);
+    ctx.moveTo(259, 88);
+    ctx.lineTo(259, 188);
+    ctx.fillRect(151, 88, 108, 100);
+    ctx.bezierCurveTo(259, 206, 151, 206, 151, 188);
+    ctx.stroke();
+    ctx.fill();
+    ctx.strokeStyle = "blue";
+    drawEllipse(148, 246, 30, 20, "yellow");
+    drawEllipse(142, 247, 8, 15, "blue");
+    drawEllipse(219, 246, 30, 20, "yellow");
+    drawEllipse(213, 247, 8, 15, "blue");
+    ctx.moveTo(184, 250);
+    ctx.lineTo(161, 289);
+    ctx.lineTo(183, 289);
+    ctx.stroke();
+    drawEllipse(184, 320, 71, 25, "yellow");
+    ctx.stroke();
+    
+    // Draw house
+    ctx.moveTo(825, 200);
+    ctx.strokeStyle = "red";
+    ctx.lineTo(675, 50);
+    ctx.lineTo(525, 200);
+    ctx.lineTo(825, 200);
+    ctx.stroke();
+
+    ctx.strokeRect(525, 200, 300, 250)
+    ctx.strokeRect(550, 225, 100, 70);
+    ctx.moveTo(600, 225);
+    ctx.lineTo(600, 295);
+    ctx.moveTo(550, 260);
+    ctx.lineTo(650, 260);
+    ctx.stroke();
+
+    ctx.strokeRect(700, 225, 100, 70);
+    ctx.moveTo(750, 225);
+    ctx.lineTo(750, 295);
+    ctx.moveTo(700, 260);
+    ctx.lineTo(800, 260);
+    ctx.stroke();
+
+    ctx.strokeRect(700, 320, 100, 70);
+    ctx.moveTo(750, 320);
+    ctx.lineTo(750, 390);
+    ctx.moveTo(700, 355);
+    ctx.lineTo(800, 355);
+    ctx.stroke();
+
+    ctx.moveTo(565, 450);
+    ctx.lineTo(565, 355);
+    ctx.arc(600, 355, 35, Math.PI, Math.PI * 2, false);
+    ctx.lineTo(635, 450);
+    ctx.moveTo(600, 450);
+    ctx.lineTo(600, 320);
+    ctx.stroke();
+
+    
+    
+    ctx.stroke();
+    // http://www.williammalone.com/briefs/how-to-draw-ellipse-html5-canvas/
+    function drawEllipse(centerX, centerY, width, height, color) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(centerX + width/2, centerY); 
+                
+        ctx.bezierCurveTo(
+          centerX + width / 2, centerY + height / 2,
+          centerX - width / 2, centerY + height / 2,
+          centerX - width / 2, centerY);
+
+        ctx.bezierCurveTo(
+          centerX - width / 2, centerY - height / 2,
+          centerX + width / 2, centerY - height / 2,
+          centerX + width / 2, centerY);
+        
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+</script>
+</body>
+</html>

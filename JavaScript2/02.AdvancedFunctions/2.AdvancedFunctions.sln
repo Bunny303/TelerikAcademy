@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3260B69-E5FE-40F3-AE09-1A65491303B6}"
+	ProjectSection(SolutionItems) = preProject
+		01.ModuleDOM.html = 01.ModuleDOM.html
+		02.MovingDivElements.html = 02.MovingDivElements.html
+		03.Console.html = 03.Console.html
+		04.TreeView.html = 04.TreeView.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

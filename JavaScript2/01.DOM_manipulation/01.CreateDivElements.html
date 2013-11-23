@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DOM Manipulation - Create div elements</title>
+</head>
+<body>
+   <!-- 1. Write a script that creates a number of div elements.Each div element must have the following:
+     - Random width and height between 20px and 100px
+     - Random background color
+     - Random font color
+     - Random position on the screen (position:absolute)
+     - A strong element with text "div" inside the div
+     - Random border-radius
+     - Random border color
+     - Random border-width between 1px and 20px-->
+
+    <input type="text" id="div-number" />
+    <a href="#" onclick="createAllDivs()">Create div elements</a>
+    <script>
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomColor() {
+            return 'rgb(' + [
+                getRandomInt(0, 255),
+                getRandomInt(0, 255),
+                getRandomInt(0, 255)
+            ].join(', ') + ')';
+        }
+
+        function createRandomDiv() {
+            var divElement = document.createElement("div");
+            var style = divElement.style;
+
+            style.width = getRandomInt(20, 100) + 'px';
+            style.height = getRandomInt(20, 100) + 'px';
+            style.backgroundColor = getRandomColor();
+            style.color = getRandomColor();
+            style.textAlign = 'center';
+            style.position = 'absolute';
+            style.top = getRandomInt(0, 75) + '%';
+            style.left = getRandomInt(0, 75) + '%';
+            style.borderRadius = getRandomInt(0, 90) + '%';
+            style.borderColor = getRandomColor();
+            style.borderWidth = getRandomInt(1, 20) + 'px';
+            style.borderStyle = ['solid', 'dashed', 'dotted'][getRandomInt(0, 2)];
+
+            divElement.appendChild(createStrong("div"));
+
+            return divElement;
+        }
+
+        function createStrong(text) {
+            var strongDiv = document.createElement('strong');
+
+            strongDiv.appendChild(document.createTextNode(text));
+
+            return strongDiv;
+        }
+
+        function createAllDivs() {
+            var count = (document.getElementById("div-number").value | 0);
+
+            while (document.body.firstChild) { 
+                document.body.removeChild(document.body.firstChild);
+            }
+
+            for (var i = 0; i < count; i++) {
+                document.body.appendChild(createRandomDiv());
+            }
+        }
+    </script>
+</body>
+</html>

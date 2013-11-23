@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Advanced Functions - Moving div elements</title>
+    <style>
+        a {
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!--2. Create a module that works with moving div elements. Implement functionality for:
+        - Add new moving div element to the DOM
+            - The module should generate random background, font and border colors
+            - All the div elements are with the same width and height
+        - The movements of the div elements can be either circular or rectangular
+        - The elements should be moving all the time-->
+    <a href="#" onclick="movingShapes.add('rect');">Add</a>
+    <label> element with rectangular movement</label>
+    <br />
+    <a href="#" onclick="movingShapes.add('ellipse');">Add</a>
+    <label> element with ellipse movement</label>
+    <div id="content"></div>
+    <script>
+        var movingShapes = (function () {
+            var content = document.getElementById("content");
+            var centerLeft = 400;
+            var centerTop = 400;
+
+            function add(movement) {
+                if (movement == 'rect') {
+                    var rectangularMovingDiv = createRandomDiv();
+                    content.appendChild(rectangularMovingDiv).className = "rect";
+                    createRectangularMovement(rectangularMovingDiv);
+                }
+                else if (movement == 'ellipse') {
+                    var ellipseMoveingDiv = createRandomDiv();
+                    content.appendChild(ellipseMoveingDiv).className = "ellipse";
+                    createEllipseMovement(ellipseMoveingDiv);
+                }
+            }
+
+            function createRandomDiv() {
+                var divElement = document.createElement("div");
+                var style = divElement.style;
+
+                style.width = '40px';
+                style.height = '40px';
+                style.backgroundColor = getRandomColor();
+                style.color = getRandomColor();
+                style.position = 'absolute';
+                style.top = '-100px';
+                style.left = '-100px';
+                style.borderRadius = getRandomInt(0, 25) + 'px';
+                style.borderColor = getRandomColor();
+                style.borderWidth = getRandomInt(1, 5) + 'px';
+                style.borderStyle = ['solid', 'dashed', 'dotted'][getRandomInt(0, 2)];
+                divElement.innerHTML = "div";
+
+                return divElement;
+            }
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function getRandomColor() {
+                return 'rgb(' + [
+                    getRandomInt(0, 255),
+                    getRandomInt(0, 255),
+                    getRandomInt(0, 255)
+                ].join(', ') + ')';
+            }
+
+            function createRectangularMovement(element) {
+                var width = 400;
+                var height = 300;
+                var top = centerTop - height / 2;
+                var left = centerLeft - width / 2;
+                setInterval(function () {
+                    if (top <= (centerTop + height / 2) && left == (centerLeft - width / 2)) {
+                        top++;
+                    }
+                    else if (left <= (centerLeft + width / 2) && top > (centerTop + height / 2 - 1)) {
+                        left++;
+                    }
+                    else if (left > (centerLeft + width / 2 - 1) && top >= (centerTop - height / 2)) {
+                        top--;
+                    }
+
+                    else if (top <= (centerTop - height / 2) && left >= (centerLeft - width / 2)) {
+                        left--;
+                    }
+                    element.style.top = top + "px";
+                    element.style.left = left + "px";
+                }, 5);
+            }
+
+            function createEllipseMovement(element) {
+                element.setAttribute("angleAttr", "0");
+                var a = 125;
+                var b = 75;
+                element.style.left = centerLeft + a + "px";
+                element.style.top = centerTop;
+
+                setInterval(function () {
+                    var angleInRadians = (element.getAttribute("angleAttr")) * (Math.PI / 180);
+                    var left = a * Math.cos(angleInRadians) + centerLeft;
+                    var top = b * Math.sin(angleInRadians) + centerTop
+                    console.log(angleInRadians);
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
+                    element.attributes.angleAttr.nodeValue++;
+                }, 5);
+            }
+            return {
+                add: add
+            };
+        })();
+    </script>
+</body>
+</html>

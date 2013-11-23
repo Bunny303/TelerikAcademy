@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DOM Manipulation - Move div elements</title>
+</head>
+<body>
+    <!--Write a script that creates 5 div elements and moves them in 
+        circular path with interval of 100 milliseconds-->
+    <a href="#" onclick="start()">Start</a>
+    <div id="content"></div>
+    <script>
+        var listDivs = document.getElementsByClassName("rotate");
+        var angle = 0;
+
+        function start() {
+            createAllDivs(5);
+            setInterval(function () { rotateDiv(listDivs) }, 100);
+        }
+
+        function createRandomDiv() {
+            var divElement = document.createElement("div");
+            var style = divElement.style;
+
+            style.width = getRandomInt(5, 50) + 'px';
+            style.height = getRandomInt(5, 50) + 'px';
+            style.backgroundColor = getRandomColor();
+            style.color = getRandomColor();
+            style.position = 'absolute';
+            style.top = '-100px';
+            style.left = '-100px';
+            style.borderRadius = getRandomInt(0, 25) + 'px';
+            style.borderColor = getRandomColor();
+            style.borderWidth = "3px";
+            style.borderStyle = ['solid', 'dashed', 'dotted'][getRandomInt(0, 2)];
+
+            return divElement;
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomColor() {
+            return 'rgb(' + [
+                getRandomInt(0, 255),
+                getRandomInt(0, 255),
+                getRandomInt(0, 255)
+            ].join(', ') + ')';
+        }
+
+        var content = document.getElementById("content");
+                
+        function createAllDivs(number) {
+            for (var i = 0; i < number; i++) {
+                content.appendChild(createRandomDiv()).className = "rotate";
+            }
+        }
+
+        function rotateDiv(divs) {
+            var increase = Math.PI * 2 / divs.length;
+            var x = 0, y = 0;
+            var radius = 100;
+            var centerTop = 150;
+            var centerLeft = 150;
+            angle += Math.PI / 180;
+            for (i = 0; i < divs.length; i++) {
+                div = divs[i];
+                x = centerTop + p * Math.abs(Math.cos(angle))*Math.cos(angle) + Math.abs(Math.sin(angle))*Math.sin(angle);
+                y = centerLeft + q * Math.abs(Math.cos(angle)) * Math.cos(angle) - Math.abs(Math.sin(angle)) * Math.sin(angle);
+                div.style.position = 'absolute';
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                var rot = 90 + (i * (360 / divs.length));
+                div.style['-moz-transform'] = "rotate(" + rot + "deg)";
+                div.style.MozTransform = "rotate(" + rot + "deg)";
+                div.style['-webkit-transform'] = "rotate(" + rot + "deg)";
+                div.style['-o-transform'] = "rotate(" + rot + "deg)";
+                div.style['-ms-transform'] = "rotate(" + rot + "deg)";
+                angle += increase;
+            }
+        }
+
+        
+        
+    </script>
+</body>
+</html>

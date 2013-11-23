@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        li {
+           list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="accordion-holder"></div>
+    <script>
+        var controls = (function () {
+            function Accordion(id) {
+                var accordion = document.querySelector(id);
+                var items = [];
+                
+                this.add = function (name) {
+                    var item = new Item(name);
+                    items.push(item);
+                    return item;
+                }
+
+                var mainUl = document.createElement("ul");
+
+                this.render = function () {
+                    if (items.length > 0) {
+                        for (var i = 0; i < items.length; i++) {
+                            var item = items[i].render();
+                            mainUl.appendChild(item);
+                        }
+                    }
+                    
+                    accordion.appendChild(mainUl);
+                    return this;
+                }
+
+                this.serialize = function () {
+                    var serializedItems = [];
+                    for (var i = 0; i < items.length; i += 1) {
+                        serializedItems.push(items[i].serialize());
+                    }
+                    return serializedItems;
+                }
+            }
+
+            function Item(name) {
+                this.name = name;
+                var subItems = []
+
+                this.add = function (name) {
+                    var subItem = new Item(name);
+                    subItems.push(subItem);
+                    return subItem;
+                }
+
+                this.render = function () {
+                    var li = document.createElement("li");
+                    li.innerHTML = '<a href="#">' + name + '</a>';
+                    li.firstElementChild.addEventListener("click", function () {
+                    if (li.childNodes.length>1) {
+                        var ul = li.getElementsByTagName("ul")[0];
+                        if (ul.style.display == "none") {
+                            ul.style.display = "block";
+                        }
+                        else {
+                            ul.style.display = "none";
+                        }
+                    }
+                    }, false);
+
+                    if (subItems.length > 0) {
+                        var ul = document.createElement("ul");
+                        ul.style.display = "none";
+                        for (var i = 0; i < subItems.length; i++) {
+                            var subItem = subItems[i].render();
+                            ul.appendChild(subItem);
+                        }
+                        li.appendChild(ul);
+                    }
+
+                    return li;
+                }
+
+                this.serialize = function () {
+                    var thisItem = {
+                        name: name
+                    };
+                    if (subItems.length > 0) {
+                        var serializedItems = [];
+                        for (var i = 0; i < subItems.length; i += 1) {
+                            var serItem = subItems[i].serialize();
+                            serializedItems.push(serItem);
+                        }
+                        thisItem.subItems = serializedItems;
+                    }
+                    return thisItem;
+                }
+            }
+
+            function getAccordion(selector) {
+                return new Accordion(selector);
+            }
+
+            function getDeserializedAccordion(selector, state) {
+
+            }
+            
+            return {
+                getAccordion: getAccordion,
+                getDeserializedAccordion: getDeserializedAccordion
+            };
+        })();
+
+        var accordion = controls.getAccordion("#accordion-holder");
+        var webItem = accordion.add("Web");
+        var sub = webItem.add("HTML");
+        sub.add("1");
+        webItem.add("CSS");
+        webItem.add("JavaScript");
+        webItem.add("jQuery");
+        webItem.add("ASP.NET MVC");
+        accordion.add("Desktop");
+        accordion.add("Mobile");
+        accordion.add("Embedded");
+        accordion.render();
+        var state = accordion.serialize();
+        localStorage.setItem("test", state);
+
+        var deState = localStorage.getItem("test");
+        controls.getDeserializedAccordion("#acc", deState);
+    </script>
+</body>
+</html>

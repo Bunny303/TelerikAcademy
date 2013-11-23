@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Event model - TODO List</title>
+    <style>
+        ul {
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+        #show, #hide {
+            width:20px;
+            height:20px;
+        }
+
+        #show {
+            display: none;
+        }
+
+        div > img {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>TODO List</h1>
+        <hr />
+        <input type="text" id="task"/>
+        <button id="add">Add</button>
+        <button id="remove">Remove</button>
+        <div>
+            <img src="img/hideBtn.png" id="hide" />
+            <img src="img/showBtn.png" id="show" />
+        </div>
+        <ul id="list"></ul>
+    </div>
+    <script>
+        //var inputTask = document.getElementById("task").value;
+        var addBtn = document.getElementById("add");
+        var removeBtn = document.getElementById("remove");
+        var hideBtn = document.getElementById("hide");
+        var showBtn = document.getElementById("show");
+        var list = document.getElementById("list");
+
+        function onAddBtnClick() {
+            var inputTask = document.getElementById("task").value;
+            var li = document.createElement("li");
+            var checkBox = document.createElement("input");
+            var span = document.createElement("span");
+            checkBox.type = "checkbox";
+            li.appendChild(checkBox);
+            li.appendChild(span);
+            span.innerHTML = inputTask;
+            list.appendChild(li);
+        }
+
+        function onRemoveBtnClick() {
+            var todoList = list.getElementsByTagName("input");
+            for (var i=0; i<todoList.length; i++) {
+                if (todoList[i].checked==true) {
+                    var parent = todoList[i].parentNode;
+                    list.removeChild(parent);
+                    i--;
+                }
+            }
+        }
+
+        function onHideBtnClick() {
+            list.style.display = "none";
+            showBtn.style.display = "inline";
+            hideBtn.style.display = "none";
+        }
+
+        function onShowBtnClick() {
+            list.style.display = "block";
+            hideBtn.style.display = "inline";
+            showBtn.style.display = "none";
+        }
+
+        addBtn.addEventListener("click", onAddBtnClick, false);
+        removeBtn.addEventListener("click", onRemoveBtnClick, false);
+        hideBtn.addEventListener("click", onHideBtnClick, false);
+        showBtn.addEventListener("click", onShowBtnClick, false);
+    </script>
+</body>
+</html>

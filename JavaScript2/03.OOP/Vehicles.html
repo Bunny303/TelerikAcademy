@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        var vehicles = (function () {
+            Function.prototype.inherit = function (parent) {
+                this.prototype = new parent();
+                this.prototype.constructor = parent;
+            };
+
+            //Function.prototype.extend = function (parent) {
+            //    for (var i = 1; i < arguments.length; i += 1) {
+            //        var property = arguments[i];
+            //        this.prototype[property] = parent.prototype[property];
+            //    }
+
+            //    return this;
+            //}
+            //INSTEAD
+            //PropulsionUnit.apply(this, arguments);
+
+            function PropulsionUnit() {
+            };
+
+            function Wheel(radius) {
+                PropulsionUnit.apply(this, arguments);
+                this.radius = radius;
+            }
+            Wheel.inherit(PropulsionUnit);
+            Wheel.prototype.acceleration = function () {
+                var acceleration = 2 * Math.PI * this.radius;
+                return acceleration;
+            }
+
+            function PropellingNozzle(power, afterburnerSwitch) {
+                PropulsionUnit.apply(this, arguments);
+                this.power = power;
+                this.afterburnerSwitch = afterburnerSwitch;
+            }
+            PropellingNozzle.inherit(PropulsionUnit);
+            PropellingNozzle.prototype.acceleration = function () {
+                var acceleration = this.power;
+                if (this.afterburnerSwitch) {
+                    return acceleration * 2;
+                }
+                else {
+                    return acceleration;
+                }
+            }
+
+            function Propeller(numberOfFins, spinDirection) {
+                PropulsionUnit.apply(this, arguments);
+                this.numberOfFins = numberOfFins;
+                this.spinDirection = spinDirection;
+            }
+            Propeller.inherit(PropulsionUnit);
+            Propeller.prototype.acceleration = function () {
+                var acceleration = this.numberOfFins;
+                if (this.spinDirection == "clockwise") {
+                    return acceleration;
+                }
+                else if (this.spinDirection == "counter-clockwise") {
+                    return -1 * acceleration;
+                }
+                else {
+                    throw Error("Invalid spin direction!");
+                }
+            }
+
+            function Vehicle(speed, propulsionUnits) {
+                this.speed = speed;
+                this.propulsionUnits = propulsionUnits;
+            }
+            Vehicle.prototype.accelerate = function () {
+                for (var i = 0; i < this.propulsionUnits.length; i++) {
+                    this.speed = this.speed + this.propulsionUnits[i].acceleration();
+                }
+            }
+
+            function LandVehichle(speed, propulsionUnits) {
+                for (var i = 0; i < propulsionUnits.length; i++) {
+                    if (!(propulsionUnits[i] instanceof Wheel)) {
+                        throw Error("The propulsion units have to be only wheels!");
+                    }
+                }
+                if (propulsionUnits.length != 4) {
+                    throw Error("The weels have to be four!");
+                }
+                Vehicle.apply(this, arguments);
+            }
+            LandVehichle.inherit(Vehicle);
+
+            function AirVehichle(speed, propulsionUnits) {
+                
+                for (var i = 0; i < propulsionUnits.length; i++) {
+                    if (!(propulsionUnits[i] instanceof PropellingNozzle)) {
+                        throw Error("The propulsion units have to be only propelling nozzles!");
+                    }
+                }
+                if (propulsionUnits.length != 1) {
+                    throw Error("The propelling nozzles have to be only one!");
+                }
+                Vehicle.apply(this, arguments);
+            }
+            AirVehichle.inherit(Vehicle);
+            AirVehichle.prototype.switchOnAfterburner = function () {
+                this.propulsionUnits[0].afterburnerSwitch = true;
+            }
+            AirVehichle.prototype.switchOffAfterburner = function () {
+                this.propulsionUnits[0].afterburnerSwitch = false;
+            }
+
+            function WaterVehichle(speed, propulsionUnits, numberPropellers ) {
+                for (var i = 0; i < propulsionUnits.length; i++) {
+                    if (!(propulsionUnits[i] instanceof Propeller)) {
+                        throw Error("The propulsion units have to be only propelers!");
+                    }
+                }
+                if (propulsionUnits.length != numberPropellers) {
+                    throw Error("The number of propulsion units lenght isn't the same with the number of propelers!");
+                }
+                Vehicle.apply(this, arguments);
+                this.numberPropellers = numberPropellers;
+            }
+            WaterVehichle.inherit(Vehicle);
+            WaterVehichle.prototype.changeSpinDirectionClockwise = function () {
+                for (var i = 0; i < this.propulsionUnits.length; i++) {
+                    this.propulsionUnits[i].spinDirection = "clockwise";
+                }
+            }
+            WaterVehichle.prototype.changeSpinDirectionCounterClockwise = function () {
+                for (var i = 0; i < this.propulsionUnits.length; i++) {
+                    this.propulsionUnits[i].spinDirection = "counter-clockwise";
+                }
+            }
+
+            function AmphibiousVehicle(speed, propulsionUnits, mode) {
+                var numberWheels = 0;
+                var numberPropellers = 0;
+                for (var i = 0; i < propulsionUnits.length; i++) {
+                    if (propulsionUnits[i] instanceof Wheel) {
+                        numberWheels++;
+                    }
+                    else if (propulsionUnits[i] instanceof Propeller) {
+                        numberPropellers++;
+                    }
+                    else {
+                        throw Error("The propulsion units to be only propelers and wheels!");
+                    }
+                }
+                if (numberWheels == 0 || numberPropellers == 0) {
+                    throw Error("Amphibious vehicle must have at least one wheel and one propeler.");
+                }
+                Vehicle.apply(this, arguments);
+                this.mode = mode;
+            }
+            AmphibiousVehicle.inherit(Vehicle);
+            AmphibiousVehicle.prototype.accelerate = function () {
+                if (this.mode == "water") {
+                    for (var i = 0; i < this.propulsionUnits.length; i++) {
+                        if (this.propulsionUnits[i] instanceof Propeller) {
+                            this.speed = this.speed + this.propulsionUnits[i].acceleration();
+                        }
+                    }
+                }
+                else if (this.mode == "land") {
+                    for (var i = 0; i < this.propulsionUnits.length; i++) {
+                        if (this.propulsionUnits[i] instanceof Wheel) {
+                            this.speed = this.speed + this.propulsionUnits[i].acceleration();
+                        }
+                    }
+                }
+                else {
+                    throw Error("Invalid mode!");
+                }
+            }
+            AmphibiousVehicle.prototype.switchToLandMode = function () {
+                this.moder = "land";
+            }
+            AmphibiousVehicle.prototype.switchToWaterMode = function () {
+                this.mode = "water";
+            }
+
+            return {
+                Wheel: Wheel,
+                PropellingNozzle: PropellingNozzle,
+                Propeller: Propeller,
+                LandVehichle: LandVehichle,
+                AirVehichle: AirVehichle,
+                WaterVehichle: WaterVehichle,
+                AmphibiousVehicle: AmphibiousVehicle
+            };
+        })();
+
+        //Test
+        var wheelArr = [new vehicles.Wheel(5), new vehicles.Wheel(5), new vehicles.Wheel(10), new vehicles.Wheel(10)];
+        var propellingNozzlesArr = [new vehicles.PropellingNozzle(10, true)];
+        var propellersArr = [new vehicles.Propeller(3, "clockwise"), new vehicles.Propeller(3, "counter-clockwise")];
+        var amphibianArr = [new vehicles.Propeller(3, "counter-clockwise"), new vehicles.Wheel(5), new vehicles.Wheel(10)];
+                
+        var car = new vehicles.LandVehichle(100, wheelArr);
+        console.log("Land vehichle");
+        console.log("Speed: " + car.speed);
+        car.accelerate();
+        console.log("Speed after acceleration: " + car.speed);
+
+        var airplane = new vehicles.AirVehichle(1000, propellingNozzlesArr);
+        console.log("Air vehichle");
+        console.log("Speed: " + airplane.speed);
+        airplane.accelerate();
+        console.log("Speed after acceleration: " + airplane.speed);
+        airplane.switchOnAfterburner();
+        airplane.accelerate();
+        console.log("Speed after switch on afterburner: " + airplane.speed);
+
+        var ship = new vehicles.WaterVehichle(50, propellersArr, 2);
+        console.log("Water vehichle");
+        console.log("Speed: " + ship.speed);
+        ship.accelerate();
+        console.log("Speed after acceleration: " + ship.speed);
+        ship.changeSpinDirectionCounterClockwise();
+        ship.accelerate();
+        console.log("Speed after change spin directionr: " + ship.speed);
+
+        var littleMermade = new vehicles.AmphibiousVehicle(7, amphibianArr, "water");
+        console.log("Amphibious vehichle");
+        console.log("Speed: " + littleMermade.speed);
+        littleMermade.accelerate();
+        console.log("Speed after acceleration: " + littleMermade.speed);
+        littleMermade.switchToLandMode();
+        console.log("After switch to land mode");
+        console.log("Speed: " + littleMermade.speed);
+        littleMermade.accelerate();
+        console.log("Speed after acceleration: " + littleMermade.speed);
+        console.log(littleMermade.isPrototypeOf(vehicles.WaterVehichle));
+        console.log(ship.isPrototypeOf(vehicles.WaterVehichle));
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Event Model - Image Carousel</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        #gallery {
+            position: relative;
+            left:0;
+            top:0;
+        }
+        #image{
+            width: 640px;
+            height: 480px;
+            padding:20px;
+            background-color: white;
+            position: absolute;
+            top: 20px;
+            left:200px;
+            z-index:3;
+        }
+
+        #left-image {
+            width: 320px;
+            height: 240px;
+            padding:10px;
+            background-color: white;
+            position: relative;
+            position: absolute;
+            top:50px;
+            left:10px;
+            z-index:-1;
+            opacity: 0.3;
+        }
+
+        #btnLeft, #btnRight {
+            width: 50px;
+            height: 50px;
+            
+        }
+
+        #buttons {
+            position: absolute;
+            top: 560px;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="gallery">
+            <img id="left-image" src="img/Bunny8.jpg" alt="Bunny"/>
+            <img id="image" src="img/Bunny1.jpg" alt="Bunny"/>
+        </div>
+        <div id="buttons">
+            <img id="btnLeft" src="img/left.png" alt="left" />
+            <img id="btnRight" src="img/right.png" alt="right" />
+        </div>
+    </div>
+    <script>
+        var img = document.getElementById("image");
+        var leftImg = document.getElementById("left-image");
+        var leftButton = document.getElementById("btnLeft");
+        var rightButton = document.getElementById("btnRight");
+        var index = 1;
+        var imagesCount = 8;
+
+        function onRightBtnClick() {
+            index++;
+
+            if (index > imagesCount) {
+                index = 1;
+            };
+
+            img.src = "img/bunny" + index + ".jpg";
+        }
+
+        function onLeftBtnClick() {
+            index--;
+
+            if (index < 1) {
+                index = imagesCount;
+            };
+
+            img.src = "img/bunny" + index + ".jpg";
+            if (index == 1) {
+                leftImg.src = "img/bunny" + imagesCount + ".jpg";
+            }
+            else {
+                leftImg.src = "img/bunny" + (index - 1) + ".jpg";
+            }
+        }
+        
+        rightButton.addEventListener("click", onRightBtnClick, false);
+        leftButton.addEventListener("click", onLeftBtnClick, false);
+    </script>
+</body>
+</html>

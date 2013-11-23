@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DOM Manipulation - Change colors</title>
+    <style>
+        a {
+            padding: 5px;
+            margin: 2px;
+            text-decoration:none;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--4. Create a text area and two inputs with type="color"
+     - Make the font color of the text area as the value of the first color input
+     - Make the background color of the text area as the value of the second input-->
+    <textarea></textarea>
+    <br />
+    <input type="color" id="font-color" />
+    <label for="font-color"> Font color</label>
+    <br />
+    <input type="color" id="background-color" />
+    <label for="background-color"> Background color</label>
+    <br />
+    <br />
+    <a href="#" onclick="changeColors()">Change colors</a>
+    <script>
+        function changeColors() {
+            var elemTextArea = document.getElementsByTagName("textarea")[0];
+            var style = elemTextArea.style;
+            var fontColor = document.getElementById("font-color").value;
+            var backgroundColor = document.getElementById("background-color").value;
+
+            style.color = fontColor;
+            style.backgroundColor = backgroundColor;
+        }
+    </script>
+</body>
+</html>

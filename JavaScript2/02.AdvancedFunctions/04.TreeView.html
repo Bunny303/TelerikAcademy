@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        var controls = (function () {
+            function treeView(element) {
+                var div = document.createElement(element);
+                document.body.appendChild(div);
+                var ul = document.createElement("ul");
+                div.appendChild(ul);
+                ul = document.getElementsByTagName("ul")[0];
+
+                return this;
+            }
+
+            function addNode() {
+                var li = document.createElement("li");
+                var parent = document.getElementsByTagName("ul")[0];
+                parent.appendChild(li)
+            }
+
+            return {
+                treeView: treeView,
+                addNode: addNode
+            };
+        })();
+
+        
+        
+        
+        //var treeView = controls.treeView("div.tree-view");
+        var treeView = controls.treeView("div");
+        var jsnode = treeView.addNode();
+        //jsnode.content("JavaScript");
+        var js1subnode = treeView.addNode();
+        //js1subnode.content("JavaScript - part 1");
+        var js2subnode = treeView.addNode();
+        //hs2subnode.content("JavaScript - part 2");
+        var jslibssubnode = treeView.addNode();
+        //jslibssubnode.content("JS Libraries");
+        var jsframeworksnode = treeView.addNode();
+        //jsframeworksnode.content("JS Frameworks and UI");
+
+        //var webnode = treeView.addNode();
+        //Webnode.content("Web");
+    </script>
+</body>
+</html>

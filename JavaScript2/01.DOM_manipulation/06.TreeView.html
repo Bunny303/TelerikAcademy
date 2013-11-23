@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DOM Manipulation - Tree View</title>
+    <style>
+		li > ul {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+    <ul>
+		<li>Item
+            <ul>
+				<li>Sub item</li>
+				<li>Sub item
+					<ul>
+						<li>Sub sub item</li>
+						<li>Sub sub item</li>
+					</ul>
+				</li>
+				<li>Sub item</li>
+			</ul>
+		</li>
+		<li>Item</li>
+		<li>Item</li>
+		<li>Item
+			<ul>
+				<li>Sub item</li>
+				<li>Sub item
+					<ul>
+						<li>Sub sub item</li>
+						<li>Sub sub item</li>
+					</ul>
+				</li>
+				<li>Sub item</li>
+			</ul>
+		</li>
+		<li>Item</li>
+		<li>Item</li>
+	</ul>
+    <script>
+        var liElements = document.getElementsByTagName('li');
+
+        //https://developer.mozilla.org/en-US/docs/DOM/EventTarget.addEventListener?redirectlocale=en-US&redirectslug=DOM%2Felement.addEventListener
+        for (var i = 0, len = liElements.length; i < len; i++) {
+            liElements[i].addEventListener('click', showSubList, false);
+        }
+
+        function showSubList(event) {
+            if (typeof this.getElementsByTagName('ul')[0] != 'undefined') {
+                // event target and 'this' point to the same object 
+                // Source: https://github.com/itanev/
+                if (this === event.target && this.getElementsByTagName('ul')[0].style.display == 'block') {
+                    this.getElementsByTagName('ul')[0].style.display = 'none';
+                }
+                else {
+                    this.getElementsByTagName('ul')[0].style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

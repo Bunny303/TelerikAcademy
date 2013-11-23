@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript APIs - Ball in a box</title>
+    <style>
+	    #ball {
+		    position: absolute;
+		    top: 50px;
+		    left: 40px;
+		    width: 30px;
+		    height: 30px;
+            border: 1px solid black;
+		    border-radius: 100px;
+		    background-color: yellowgreen;
+	    }
+
+    </style>
+</head>
+<body>
+	<div id="ball"></div>
+	<script>
+        var ball = document.getElementById("ball");
+        var leftBound = 0;
+	    var topBound = 0;
+	    var rightBound = window.innerWidth;
+	    var bottomBound = window.innerHeight;
+	    var speed = 10;
+
+        var direction = 'TL';
+	    var ballLeftPos = window.innerWidth-10,
+            ballTopPos = window.innerHeight-10;
+
+        function move() {
+            switch (direction) {
+                case 'BR':
+                    if (ballLeftPos >= rightBound) {
+                        direction = 'BL';
+                        bottomLeft();
+                    }
+                    else if (ballTopPos >= bottomBound) {
+                        direction = 'TR';
+                        topRight();
+                    }
+                    else {
+                        bottomRight();
+                    }
+                    break;
+                case 'BL':
+                    if (ballLeftPos <= leftBound) {
+                        direction = 'BR';
+                        bottomRight();
+                    }
+                    else if (ballTopPos >= bottomBound) {
+                        direction = 'TL';
+                        topLeft();
+                    }
+                    else {
+                        bottomLeft();
+                    }
+                    break;
+                case 'TR':
+                    if (ballLeftPos >= rightBound) {
+                        direction = 'TL';
+                        topLeft();
+                    }
+                    else if (ballTopPos <= topBound) {
+                        direction = 'BR';
+                        bottomRight();
+                    }
+                    else {
+                        topRight();
+                    }
+                    break;
+                case 'TL':
+                    if (ballLeftPos <= leftBound) {
+                        direction = 'TR';
+                        topRight();
+                    }
+                    else if (ballTopPos <= topBound) {
+                        direction = 'BL';
+                        bottomLeft();
+                    }
+                    else {
+                        topLeft();
+                    }
+                    break;
+            }
+
+            ball.style.left = ballLeftPos + 'px';
+            ball.style.top = ballTopPos + 'px';
+
+            setTimeout(move, 30);
+        }
+
+        function bottomRight() {
+            ballLeftPos += speed + 1;
+            ballTopPos += speed;
+        }
+
+        function bottomLeft() {
+            ballLeftPos -= speed + 1;
+            ballTopPos += speed;
+        }
+
+        function topRight() {
+            ballLeftPos += speed + 1;
+            ballTopPos -= speed;
+        }
+
+        function topLeft() {
+            ballLeftPos -= speed + 1;
+            ballTopPos -= speed;
+        }
+
+        move();
+    </script>
+</body>
+</html>

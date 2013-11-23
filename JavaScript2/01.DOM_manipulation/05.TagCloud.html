@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DOM Manipulation - Create tag cloud</title>
+    <style>
+        #container {
+            width: 200px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!--5.Create a tag cloud:
+     - Visualize a string of tags (strings) in a given container
+     - By given minFontSize and maxFontSize, generate the tags with different font-size, depending on the number of occurrences-->
+    <div id="container"></div>
+    <script>
+        var tags =
+            ["cms", "javascript", "js", "ASP.NET MVC", ".net", ".net", "css",
+                "wordpress", "xaml", "js", "http", "web", "asp.net", "asp.net MVC",
+                "ASP.NET MVC", "wp", "javascript", "js", "cms", "html", "javascript",
+                "http", "http", "CMS"];
+        var tagCloud = generateTagCloud(tags, 17, 42);
+        
+        function generateTagCloud(arr, minFontSize, maxFontSize) {
+            var dict = countWords(arr);
+                       
+            // 2. Find min and max number of occurrences
+            var min = Number.MAX_VALUE;
+            var max = 0;
+
+            for (var key in dict) {
+                if (dict[key] > max) {
+                    max = dict[key];
+                }
+                if (dict[key] < min) {
+                    min = dict[key];
+                }
+            }
+
+            //3. Create span elements with different font size
+            var container = document.getElementById("container");
+            
+            for (var key in dict) {
+                var span = document.createElement("span");
+                if (min == dict[key]) {
+                    span.style.fontSize = minFontSize + "px";
+                }
+                else if (max == dict[key]) {
+                    span.style.fontSize = maxFontSize + "px";
+                }
+                else {
+                    span.style.fontSize = minFontSize + ((maxFontSize - minFontSize) / ((max - dict[key]) + 1)) + "px";
+                }
+                span.innerHTML = key + " ";
+                container.appendChild(span);
+            }
+        }
+
+        // 1.Make dictionary
+        function countWords(words) {
+            var wordsCount = {};
+            var word = {};
+            for (var i = 0; i < words.length; i++) {
+                word = words[i].toLowerCase();
+                if (wordsCount[word]) {
+                    wordsCount[word]++;
+                }
+                else {
+                    wordsCount[word] = 1;
+                }
+            }
+            console.log(wordsCount);
+            return wordsCount;
+        }
+        
+        
+         
+        
+    </script>
+</body>
+</html>
