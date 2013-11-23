@@ -1,0 +1,21 @@
+﻿// 11. Write a program that reads a number and prints it as a decimal number, hexadecimal number, percentage and in scientific notation. 
+// Format the output aligned right in 15 symbols.
+
+using System;
+
+class DifferentFormatString
+{
+    static void Main()
+    {
+        int number = int.Parse(Console.ReadLine());
+
+        //Decimal number
+        Console.WriteLine("{0,15}", number);
+        //Hexadecimal number
+        Console.WriteLine("{0,15:X}", number);
+        //Percentage
+        Console.WriteLine("{0,15:P}", number);
+        // Scientific notation
+        Console.WriteLine("{0,15:E}", number); 
+    }
+}
