@@ -1,0 +1,118 @@
+﻿Congratulations, you've successfully created your project, batmanstore, on CodePlex.com. 
+Please review and retain this email because it contains important quick reference information you'll want to keep on hand.
+
+Right now, your project is unpublished–only your designated team members can view it. 
+Review and act upon the information below because you have a limited amount of time to publish your project.
+
+Protect Your Work–Your Deadline is април 13 2013
+Publish your project within 30 days, as unpublished projects are deleted in 30 days.
+Note that your publication deadline
+
+### DEADLINE 13 APRIL 2013 ##
+########################
+Legend: [R] - to be Reviewed/Requested
+		[A] - Approved
+		[C] - Completed/Coded /coded in project/
+
+#######################
+
+++++++++++ IDEAS SECTION ++++++++++++++
+[R] when adding new object making it in promotion for 3 days for example
+[R] creating txt files as SQL for the information
++++++++++++++++++++++++++++++++++++++++
+
+
+#### BEGIN 001 #####
+[R] abstract class Audio /not sure what to contain this class/
+	//<fields>
+
+			- model (string) /not sure about the semantic/
+			- manafacturer (string) /not sure about the semantic/
+			- power (int) /4 X 50 W ОБЩА ИЗХОДНА ЗВУКОВА МОЩНОСТ/
+			- frequency (int) /ЧЕСТОТНА ЛЕНТА 90 - 46 000 Hz/
+
+	//</fields>
+
+[R] Class AudioPlayers : Audio, IPlayable, IPromotional
+	//<fields>
+
+		- Unique ID (string) example - 1356561
+		- price (decimal)
+		- promotionStartDate (DateTime) //interface IPromotional
+		- promotionEndDate (DateTime) //interface IPromotional
+		- outputchannels (int) /4 X 50 W ОБЩА ИЗХОДНА ЗВУКОВА МОЩНОСТ/
+		- type (enum) enum {car, home}
+		- supportedformats[] (enum) - enum {MP3/WMA/FLAC}
+		- input[] - (enum) enum {FM Radio, CD, DVD, USB}
+
+	//</fields>
+
+[R] Class Speakers : Audio, ISoundable, IPromotional
+	//<fields>
+
+		- Unique ID (string) example - 1356561
+		- price (decimal)
+		- promotionStartDate (DateTime) //interface IPromotional
+		- promotionEndDate (DateTime) //interface IPromotional
+		- soundposition (enum) enum { front, surround }
+		- size (int/double) /12" /30см./ субуфер за затворен обем/
+		- sensitivity (int) 94 dB
+
+	//</fields>
+#### END 01 #####
+
+#### BEGIN 002 #####
+[R] abstract class Video
+	//<fields>
+
+		- model (string) /not sure about the semantic/
+		- manafacturer (string) /not sure about the semantic/
+
+	//<fields>
+[R] class TV : Video, IDisplayable, IPromotional
+	//<fields>
+		
+		- Unique ID (string) example - 1356561
+		- price (decimal)
+		- promotionStartDate (DateTime) //interface IPromotional
+		- promotionEndDate (DateTime) //interface IPromotional
+		- size (int) 40" (101 см) LCD ТЕЛЕВИЗОР
+		- HD support - i don;t know anything about HD formats :)
+		- frequency (int) 100 HZ PERFECT M-TI-N RATE
+		- Resolution (string) РЕЗОЛЮЦИЯ 1920 Х 1080р
+		- soundPower (int) ЗВУКОВА МОЩНОСТ 2 Х 10 W
+		- input (enum) enum {HDMI, SCART, USB}
+		- contrast (int)
+
+	//</fields>
+[R] class VideoPlayer : Video, IPlayable, IPromotional
+	//<fields>
+		
+		- Unique ID (string) example - 1356561
+		- price (decimal)
+		- promotionStartDate (DateTime) //interface IPromotional
+		- promotionEndDate (DateTime) //interface IPromotional
+		- input (enum) enum { DVD, CD, Bluray, USB, HDMI, OPTICAL, LAN } //this is common for both TV and Player
+		- supportedVideoFormats (enum)  enum {BD-R/RE,DVD,AVC-HD,DivX HD,MKV}
+		- supportedChannels (int) enum {2.1, 5.1, 7.1}
+
+	//</fields>
+		
+#### END 02 #####
+
+#### BEGIN 003 #####
+
+[R] class HomeTheater
+	//<fields>
+
+		- Unique ID (string) example - 1356561
+		- price (decimal)
+		- promotionStartDate (DateTime) //interface IPromotional
+		- promotionEndDate (DateTime) //interface IPromotional
+		- instance of class Speaker
+		- instance of class TV
+		- instance of class VideoPlayer
+
+	//</fields>
+
+#### END 03 #####

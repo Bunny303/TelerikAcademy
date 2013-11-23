@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Batman.store.Article">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAQAAAAAEAAAAAAQAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Batman.store.DvdPlayer" Collapsed="true">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAEAAAAgAAAQAAAAEABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DvdPlayer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.Monitor" Collapsed="true">
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAEAAAAAAAAQAAAAEABAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Monitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.Promotion" Collapsed="true">
+    <Position X="9.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAEAAAAACAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Promotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Batman.store.Store" Collapsed="true">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgggAAIAgAAAAAAQAAAAAAAAABAAAAAQAAAAACAIAA=</HashCode>
+      <FileName>Store.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Batman.store.TestClass" Collapsed="true">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>TestClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Batman.store.TV" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAQAAAAEAAAAAAAAQAAAAECBAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TV.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.Amplifier">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIAAAAAAAAAAAAAAAAAAEAAAAABAgAAAAAAAAA=</HashCode>
+      <FileName>Amplifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.HomeTheatre" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAQAAAEAABAABAABBAAAIAAQ=</HashCode>
+      <FileName>HomeTheatre.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.MP3Player">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAEAAAAABAgAEAAAAAAA=</HashCode>
+      <FileName>MP3Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.Speakers" Collapsed="true">
+    <Position X="2.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAhAAAAAAAAAAAAEAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Speakers.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Batman.store.StoreException" Collapsed="true">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StoreException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Batman.store.Dimensions" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEQAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Dimensions.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Batman.store.Display" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAIAAAAAAAAAAAACAAAAAgAAAAAA=</HashCode>
+      <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Batman.store.Frequency" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEQAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Frequency.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Batman.store.IPromotional" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IPromotional.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Batman.store.ISoundable" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ISoundable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Batman.store.IVideoPlayable" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IVideoPlayable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Batman.store.VideoFormat" Collapsed="true">
+    <Position X="10.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABCAAAAAAAABAAAAAAAAAEAAEACAAAAAAA=</HashCode>
+      <FileName>VideoFormat.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Batman.store.SoundFormat" Collapsed="true">
+    <Position X="9" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAABAAABAAIAAAAAAAACAAAAAAgAAA=</HashCode>
+      <FileName>SoundFormat.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Batman.store.SoundPosition" Collapsed="true">
+    <Position X="7.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

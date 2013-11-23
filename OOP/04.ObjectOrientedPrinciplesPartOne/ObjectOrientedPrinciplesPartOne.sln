@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolLayout", "ShoolLayout\SchoolLayout.csproj", "{C4512E74-FBB1-4EC3-9C2A-08473A1C6BCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanLayout", "HumanLayout\HumanLayout.csproj", "{72A8322A-3F67-4A15-9B0B-FC6D3200A537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalLayout", "AnimalLayout\AnimalLayout.csproj", "{32BE6BA1-4822-4F7F-A27E-98F3DA1EC25B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4512E74-FBB1-4EC3-9C2A-08473A1C6BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4512E74-FBB1-4EC3-9C2A-08473A1C6BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4512E74-FBB1-4EC3-9C2A-08473A1C6BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4512E74-FBB1-4EC3-9C2A-08473A1C6BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A8322A-3F67-4A15-9B0B-FC6D3200A537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A8322A-3F67-4A15-9B0B-FC6D3200A537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A8322A-3F67-4A15-9B0B-FC6D3200A537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A8322A-3F67-4A15-9B0B-FC6D3200A537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BE6BA1-4822-4F7F-A27E-98F3DA1EC25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BE6BA1-4822-4F7F-A27E-98F3DA1EC25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BE6BA1-4822-4F7F-A27E-98F3DA1EC25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BE6BA1-4822-4F7F-A27E-98F3DA1EC25B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

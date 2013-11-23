@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuguresSurface", "FuguresSurface\FuguresSurface.csproj", "{0B677548-5032-4331-9999-0310671E1DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "Bank\Bank.csproj", "{7687C7A5-AC83-4493-8121-00342808ABD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exception", "Exeption\Exception.csproj", "{1D578FD7-CA7F-4645-AD9A-83A12DFCFB15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B677548-5032-4331-9999-0310671E1DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B677548-5032-4331-9999-0310671E1DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B677548-5032-4331-9999-0310671E1DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B677548-5032-4331-9999-0310671E1DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7687C7A5-AC83-4493-8121-00342808ABD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7687C7A5-AC83-4493-8121-00342808ABD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7687C7A5-AC83-4493-8121-00342808ABD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7687C7A5-AC83-4493-8121-00342808ABD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D578FD7-CA7F-4645-AD9A-83A12DFCFB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D578FD7-CA7F-4645-AD9A-83A12DFCFB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D578FD7-CA7F-4645-AD9A-83A12DFCFB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D578FD7-CA7F-4645-AD9A-83A12DFCFB15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
