@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        function onClick(event, arguments) {
+            var currentWindow = window;
+            var browserName = currentWindow.navigator.appCodeName;
+            var isMozzilla = (browserName == "Mozilla");
+            if (isMozzilla) {
+                alert("Yes, it's Mozilla!");
+            } else {
+                alert("No, it's not Mozilla!");
+            }
+        }
+    </script>
+</body>
+</html>
