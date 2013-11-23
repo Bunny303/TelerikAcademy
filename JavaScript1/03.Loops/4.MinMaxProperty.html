@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>4. Find the lexicographically smallest and largest property in document, window and navigator objects</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <a href="#" onclick="onFindMinBtnClick(document)">Find smallest property in document</a>
+    <br />
+    <a href="#" onclick="onFindMaxBtnClick(document)">Find largest property in document</a>
+    <br />
+    <a href="#" onclick="onFindMinBtnClick(window)">Find smallest property in window</a>
+    <br />
+    <a href="#" onclick="onFindMaxBtnClick(window)">Find largest property in window</a>
+    <br />
+    <a href="#" onclick="onFindMinBtnClick(navigator)">Find smallest property in navigator</a>
+    <br />
+    <a href="#" onclick="onFindMaxBtnClick(navigator)">Find largest property in navigator</a>
+    <br />
+    <div id="console">
+	</div>
+    <script src="scripts/js-console.js">	  
+	</script>		     	  
+	<script>
+	    function onFindMinBtnClick(object) {
+	        var min = "z";
+	        for (var property in object) {
+	            if (property < min) {
+	                min = property;
+	            }
+	        }
+	        jsConsole.writeLine("The smallest property is: " + min);
+	    }
+
+	    function onFindMaxBtnClick(object) {
+	        var max = "a";
+	        for (var property in object) {
+	            if (property > max) {
+	                max = property;
+	            }
+	        }
+	        jsConsole.writeLine("The largest property is: " + max);
+	    }
+	</script>
+    
+</body>
+</html><!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

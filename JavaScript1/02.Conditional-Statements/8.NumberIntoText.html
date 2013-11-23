@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>8. Convert number into text</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="digit">Input digit: </label>
+	<input type="text" id="digit"/>
+	<br />							  
+	<a href="#" onclick="ConvertDigit()">Convert</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function ConvertDigit() {
+	        var digit = jsConsole.readFloat("#digit");
+	        var hundreds = Math.floor(digit / 100);
+	        var tens = Math.floor((digit % 100) / 10);
+	        var units = Math.floor((digit % 100) % 10);
+
+	        switch (hundreds)
+	        {
+	            case 0: break;
+	            case 1: jsConsole.write("One hundred "); break;
+	            case 2: jsConsole.write("Two hundred "); break;
+	            case 3: jsConsole.write("Three hundred "); break;
+	            case 4: jsConsole.write("Four hundred "); break;
+	            case 5: jsConsole.write("Five hundred "); break;
+	            case 6: jsConsole.write("Six hundred "); break;
+	            case 7: jsConsole.write("Seven hundred "); break;
+	            case 8: jsConsole.write("Eight hundred "); break;
+	            case 9: jsConsole.write("Nine hundred "); break;
+	            default: jsConsole.write("Wrong input number "); break;
+	        }
+            
+	        if (tens > 1) 
+	        {
+	            switch (tens)
+	            {
+	                case 2: jsConsole.write("twenty "); break;
+	                case 3: jsConsole.write("thirty "); break;
+	                case 4: jsConsole.write("fourty "); break;
+	                case 5: jsConsole.write("fifty "); break;
+	                case 6: jsConsole.write("sixty "); break;
+	                case 7: jsConsole.write("seventy "); break;
+	                case 8: jsConsole.write("eighty "); break;
+	                case 9: jsConsole.write("ninety "); break;
+	                default: jsConsole.write("Wrong input number"); break;
+	            }
+	            switch (units)
+	            {
+	                case 0: break;
+	                case 1: jsConsole.write("one"); break;
+	                case 2: jsConsole.write("two"); break;
+	                case 3: jsConsole.write("three"); break;
+	                case 4: jsConsole.write("four"); break;
+	                case 5: jsConsole.write("five"); break;
+	                case 6: jsConsole.write("six"); break;
+	                case 7: jsConsole.write("seven"); break;
+	                case 8: jsConsole.write("eight"); break;
+	                case 9: jsConsole.write("nine"); break;
+	                default: jsConsole.write("Wrong input number "); break;
+	            }
+	        }
+
+	        else if (tens == 0)
+	        {
+	            if (hundreds != 0)
+	            {
+	                switch (units)
+	                {
+	                    case 0: break;
+	                    case 1: jsConsole.write("and one"); break;
+	                    case 2: jsConsole.write("and two"); break;
+	                    case 3: jsConsole.write("and three"); break;
+	                    case 4: jsConsole.write("and four"); break;
+	                    case 5: jsConsole.write("and five"); break;
+	                    case 6: jsConsole.write("and six"); break;
+	                    case 7: jsConsole.write("and seven"); break;
+	                    case 8: jsConsole.write("and eight"); break;
+	                    case 9: jsConsole.write("and nine"); break;
+	                    default: jsConsole.write("Wrong input number "); break;
+	                }
+	            }
+	            else
+	            {
+	                switch (units)
+	                {
+	                    case 1: jsConsole.write("one"); break;
+	                    case 2: jsConsole.write("two"); break;
+	                    case 3: jsConsole.write("three"); break;
+	                    case 4: jsConsole.write("four"); break;
+	                    case 5: jsConsole.write("five"); break;
+	                    case 6: jsConsole.write("six"); break;
+	                    case 7: jsConsole.write("seven"); break;
+	                    case 8: jsConsole.write("eight"); break;
+	                    case 9: jsConsole.write("nine"); break;
+	                    default: jsConsole.write("zero"); ; break;
+	                }
+	            }
+	        }
+	        else 
+	        {
+	            if (hundreds != 0)
+	            {
+	                Console.Write("and ");
+	            }
+	            switch (units)
+	            {
+	                case 0: jsConsole.write("ten"); break;
+	                case 1: jsConsole.write("eleven"); break;
+	                case 2: jsConsole.write("twelve"); break;
+	                case 3: jsConsole.write("thirteen"); break;
+	                case 4: jsConsole.write("fourteen"); break;
+	                case 5: jsConsole.write("fifteen"); break;
+	                case 6: jsConsole.write("sixteen"); break;
+	                case 7: jsConsole.write("seventeen"); break;
+	                case 8: jsConsole.write("eighteen"); break;
+	                case 9: jsConsole.write("nineteen"); break;
+	                default: jsConsole.write("Wrong input number "); break;
+	            }    
+                
+	        }
+	    }
+	</script>
+</body>
+</html>

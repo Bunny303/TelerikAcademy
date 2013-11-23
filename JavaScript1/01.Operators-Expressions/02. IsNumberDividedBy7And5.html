@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>2. Check given integer if it can be divided by 7 and 5.
+ </title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="number">Input number: </label>
+	<input type="text" id="number"/>
+	<br />							  
+	<a href="#" onclick="onCheckNumberBtnClick()">Check</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onCheckNumberBtnClick() {
+	        var number = jsConsole.readInteger("#number");
+	        var number = number % 35;
+	        if (number == 0) {
+	            jsConsole.writeLine("The number is divided by 7 and 5");
+	        }
+	        else {
+	            jsConsole.writeLine("The number isn't divided by 7 and 5");
+	        }
+	    }
+	</script>
+</body>
+</html>

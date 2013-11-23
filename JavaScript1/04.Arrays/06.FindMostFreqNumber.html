@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>6. Find most frequent number</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="arr">Input set of numbers /separeted by ","/: </label>
+	<input type="text" id="arr"/>
+	<br />
+	<a href="#" onclick="onFindSetOfNumBtnClick()">Find</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>
+
+    <!--Write a program that finds the most frequent number in an array.-->		  
+	<script>
+	    function onFindSetOfNumBtnClick() {
+	        var arr = jsConsole.read("#arr").split(",", 20);
+	        //Print unsorted array
+	        jsConsole.write("{");
+	        for (var i = 0; i < arr.length; i++) {
+                jsConsole.write(arr[i] + " ");
+	        }
+            jsConsole.write("} ");
+
+            arr.sort();
+
+            var len = 1;
+            var maxLen = 1;
+            var index = 0;
+            var maxIndex = 0;
+
+            //Read and find
+            for (var i = 0; i < (arr.length - 1); i++){
+                if (arr[i] == arr[i + 1]){
+                    len++;
+                    if (len > maxLen){
+                        maxLen = len;
+                        maxIndex = i;
+                    }
+                }
+                else{
+                    len = 1;
+                }
+            }
+
+            //Output
+            jsConsole.writeLine("--> "+ arr[maxIndex] +" - "+ maxLen + " times");
+	}
+	</script>
+</body>
+</html>

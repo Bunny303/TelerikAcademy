@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="inputArray">Input set of numbers /separeted with ","/: </label>
+	<input type="text" id="inputArray"/>
+	<br />							  
+	<a href="#" onclick="onFindMaxSeqBtnClick()">Find</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onFindMaxSeqBtnClick() {
+	        var arr = jsConsole.read("#inputArray").split(",", 20);
+	        var len = 1;
+	        var maxLen = 1;
+	        var index = 0;
+	        var maxIndex = 0;
+
+	        //Read and find
+	        for (var i = 0; i < (arr.length - 1); i++) {
+                if (arr[i] < arr[i + 1]) {
+                    len++;
+                    index = i - len + 2; //start index of sequence
+                    if (len > maxLen) {
+                        maxLen = len;
+                        maxIndex = index;
+	                }
+                }
+            else {
+            len = 1;
+            }
+        }
+
+        //Output
+
+        for (var i = 0; i < arr.length; i++){
+            jsConsole.write(arr[i] + " ");
+        }
+        jsConsole.write(" }--> { ");
+        for (var i = maxIndex; i < maxIndex + maxLen; i++) {
+            jsConsole.write(arr[i] + " ");
+        }
+	    jsConsole.writeline("}");
+	}
+	</script>
+</body>
+</html>

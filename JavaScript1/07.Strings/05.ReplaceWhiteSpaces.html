@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Replade white spaces</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>							  
+    <!--5. Write a function that replaces non breaking white-spaces in a text with &nbsp;-->
+
+    <div id="console">
+	</div>
+    <script src="scripts/js-console.js">	  
+	</script>
+	<script>
+	    var testText = "We are living in an yellow submarine. We don't have anything else";
+	    var result = testText.replace(/\s/g, 'nbsp'); // \s - whitespace; g-global (search more then one)
+	    jsConsole.writeLine(result);
+	</script>
+
+</body>
+</html>

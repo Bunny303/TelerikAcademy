@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Count given number in array and test</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <!--6. Write a function that counts how many times given number appears in given array. 
+        Write a test function to check if the function is working correctly.-->
+
+    <div id="arrayInfo">The input array is: {7,3,6,2,9,6}</div>
+    <br />
+    <a href="#" onclick="TestFunction()">Test</a>
+    <br />
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var array = new Array(7, 3, 6, 2, 9, 6);
+        function CountOnBtnClick(number) {
+            var counter = 0;
+            for (var i = 0; i < array.length; i++) {
+                if (array[i] == number) {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        function TestFunction(number, result) {
+            if (CountOnBtnClick(number) == result) {
+                jsConsole.writeLine("ok");
+            }
+            else {
+                jsConsole.write("fail");
+            }
+        }
+
+        jsConsole.write("Number=6; Result=2 --> ");
+        TestFunction(6, 2)
+        jsConsole.write("Number=2; Result=1 --> ");
+        TestFunction(2, 1)
+        jsConsole.write("Number=9; Result=2 --> ");
+        TestFunction(9, 2)
+    </script>
+</body>
+</html>

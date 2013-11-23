@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Reverse srings</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>							  
+    <!--1. Write a JavaScript function reverses string and returns it-->
+
+	<label for="string">Write a string: </label>
+	<input id="string" type="text" class="js-console-input" />
+    <br />
+	<a href="#" class="js-console-btn" onclick="reverseString()">Reverse</a>
+	<div id="console">
+	</div>
+    <script src="scripts/js-console.js">	  
+	</script>
+	<script>
+        function reverseString() {
+	        var str = jsConsole.read("#string");
+	        for (var i = str.length-1; i >= 0; i--) {
+	            jsConsole.write(str[i]);
+	        }
+	    }
+	</script>
+
+</body>
+</html>

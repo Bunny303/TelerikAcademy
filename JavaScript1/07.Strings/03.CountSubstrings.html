@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Count substrings</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>							  
+    <!--3. Write a JavaScript function that finds how many times a substring is contained in a given text (perform case insensitive search). -->
+
+    <div id="console">
+	</div>
+    <script src="scripts/js-console.js">	  
+	</script>
+	<script>
+	    function CountSubstrings(text, substring) {
+	        var counter = 0;
+	        text = text.toLowerCase();
+	        substring = substring.toLowerCase();
+	        var index = text.indexOf(substring);
+	        while (index > -1) {
+	            counter++;
+	            index = text.indexOf(substring, index + 1);
+	        }
+	        return counter;
+	    }
+
+	    var testText = "We are living in an yellow submarine. We don't have anything else. Inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.";
+	    var testSubstring = "in";
+	    var result = CountSubstrings(testText, testSubstring);
+	    jsConsole.writeLine(testSubstring + " --> " + result);
+	</script>
+
+</body>
+</html>

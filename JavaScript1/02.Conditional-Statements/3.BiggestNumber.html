@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>3. Biggest of 3 integer numbers</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First number: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second number: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+    <label for="tb-third">Third number: </label>
+	<input type="text" id="tb-third"/>
+	<br />
+	<a href="#" onclick="FindBiggestNumber()">Show</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function FindBiggestNumber() {
+	        var a = jsConsole.readFloat("#tb-first");
+	        var b = jsConsole.readFloat("#tb-second");
+	        var c = jsConsole.readFloat("#tb-third");
+	        
+	        if (a >= b) {
+	            if (a >= c) {
+	                jsConsole.writeLine("The biggest number is " + a);
+	            }
+	            else {
+	                jsConsole.writeLine("The biggest number is " + c);
+	            }
+	        }
+	        else {
+	            if (b >= c) {
+	                jsConsole.writeLine("The biggest number is " + b);
+	            }
+	            else {
+	                jsConsole.writeLine("The biggest number is " + c);
+	            }
+	        }
+	    }
+	</script>
+</body>
+</html>

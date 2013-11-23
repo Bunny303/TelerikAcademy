@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>4. Sort 3 numbers in descending order</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First number: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second number: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+    <label for="tb-third">Third number: </label>
+	<input type="text" id="tb-third"/>
+	<br />
+	<a href="#" onclick="SortNumbers()">Sort</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function SortNumbers() {
+	        var a = jsConsole.readFloat("#tb-first");
+	        var b = jsConsole.readFloat("#tb-second");
+	        var c = jsConsole.readFloat("#tb-third");
+	        
+	        if ((a >= b) && (a>=c))
+	        {
+	            if (b >= c)
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + a + " " + b + " " + c);
+	            }
+	            else
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + a + " " + c + " " + b);
+	            }
+	        }
+
+	        else if ((b >= a) && (b >= c))
+	        {
+	            if (a >= c)
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + b + " " + a + " " + c);
+	            }
+	            else
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + b + " " + c + " " + a);
+	            }
+	        }
+
+	        else
+	        {
+	            if (a >= b)
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + c + " " + a + " " + b);
+	            }
+	            else
+	            {
+	                jsConsole.writeLine("The descending order of the numbers is: " + c + " " + b + " " + a);
+	            }
+	        }
+	    }
+	</script>
+</body>
+</html>

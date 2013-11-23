@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>3. Find max and min number from N numbers</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="numbers">Input numbers (separeted by ",")</label>
+    <br />
+	<input type="text" id="numbers"/>
+	<br />
+    <a href="#" onclick="onFindNumbersBtnClick()">Find</a>
+    <br />
+    <div id="console">
+	</div>
+    <script src="scripts/js-console.js">	  
+	</script>		     	  
+	<script>
+	    function onFindNumbersBtnClick() {
+            var input = jsConsole.read("#numbers");
+            var numbers = input.split(",");
+            for (var i = 0; i < numbers.length; i++) {
+                numbers[i] = parseInt(numbers[i], 10);
+            }
+            var maxNumber = numbers[0];
+            var minNumber = numbers[0];
+            for (var i = 0; i < numbers.length; i++) {
+                if (numbers[i] > maxNumber) {
+                    maxNumber = numbers[i];
+                }
+                if (numbers[i] < minNumber) {
+                    minNumber = numbers[i];
+                }
+            }
+            jsConsole.writeLine("Max number is: " + maxNumber);
+            jsConsole.writeLine("Min number is: " + minNumber);
+	    }
+	</script>
+    
+</body>
+</html>

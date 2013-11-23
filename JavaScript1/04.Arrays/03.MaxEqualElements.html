@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="arr">Input set of numbers /separeted by ","/: </label>
+	<input type="text" id="arr"/>
+	<br />
+	<a href="#" onclick="onFindMaxEqualElemBtnClick()">Find</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>
+
+    <!--Write a script that finds the maximal sequence of equal elements in an array.-->		  
+	<script>
+	    function onFindMaxEqualElemBtnClick() {
+	        var arr = jsConsole.read("#arr").split(",", 20);
+	        var len = 1;
+	        var maxLen = 1;
+	        var index = 0;
+	        var maxIndex = 0;
+
+	        //Read array and find
+	        for (var i = 0; i < (arr.length - 1); i++) {
+                if (arr[i] == arr[i + 1]) {
+                    len++;
+                    index = i - len + 2; //start index of sequence
+                    if (len > maxLen){
+                        maxLen = len;
+                        maxIndex = index;
+	                }
+                }
+                else {
+                    len = 1;
+                }
+            }
+        
+            //Output
+            jsConsole.write("{ ");
+            for (var i = 0; i < arr.length; i++){
+                jsConsole.write(arr[i] + " ");
+            }
+            jsConsole.write(" } --> { ");
+            for (var i = maxIndex; i < maxIndex + maxLen; i++){
+                jsConsole.write(arr[i] + " ");
+            }
+            jsConsole.write("}");
+	    }
+	</script>
+</body>
+</html>

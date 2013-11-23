@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>2. Show product sign</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First number: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second number: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+    <label for="tb-third">Third number: </label>
+	<input type="text" id="tb-third"/>
+	<br />
+	<a href="#" onclick="ShowSign()">Show Sign</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function ShowSign() {
+	        var a = jsConsole.readFloat("#tb-first");
+	        var b = jsConsole.readFloat("#tb-second");
+	        var c = jsConsole.readFloat("#tb-third");
+	        var sign = true;
+
+	        if (a < 0){
+	            sign = !sign;
+	        }
+	        if (b < 0) {
+	            sign = !sign;
+	        }
+	        if (c < 0) {
+	            sign = !sign;
+	        }
+	        
+            if (sign==true)
+                jsConsole.writeLine("Sign of product is: +");
+	        else
+                jsConsole.writeLine("Sign of product is: -");
+	    }
+	</script>
+</body>
+</html>

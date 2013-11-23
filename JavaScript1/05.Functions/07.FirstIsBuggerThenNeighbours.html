@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Find the first number bigger than his neighbours</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <!--7. Write a Function that returns the index of the first element in array that is bigger than its neighbors, or -1, if there’s no such element.-->
+
+    <div id="arrayInfo">The input array is: {7,3,6,2,9}</div>
+    <br />
+    <a href="#" onclick="findElementOnBtnClick()">Find</a>
+    <br />
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    
+    <!--function from ex.6-->
+    <script>
+        function checkElementOnBtnClick(index) {
+            if ((index != 0) && (index != array.length - 1)) {
+                if ((array[index] > array[index - 1]) && (array[index] > array[index + 1])) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    </script>
+
+    <script>
+        var array = new Array(7, 3, 6, 2, 9);
+        function findElementOnBtnClick() {
+            for (var i = 1; i < array.length - 2; i++) {
+                if (checkElementOnBtnClick(i)) {
+                    jsConsole.writeLine("The element is found at position: " + i);
+                    return;
+                }
+            }
+            jsConsole.writeLine("-1");
+        }
+    </script>
+</body>
+</html>

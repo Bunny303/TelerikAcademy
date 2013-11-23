@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>07. Binary search</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="arr">Input set of numbers /separeted by ","/: </label>
+	<input type="text" id="arr"/>
+	<br />
+    <label for="number">Input searching number: </label>
+	<input type="text" id="number"/>
+	<br />
+	<a href="#" onclick="onFindSetOfNumBtnClick()">Find</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>
+
+    <!--Write a program that finds the index of given element in a sorted array of integers by using the binary search algorithm-->		  
+	<script>
+	    function onFindSetOfNumBtnClick() {
+	        var arr = jsConsole.read("#arr").split(",", 20);
+	        var element = jsConsole.readInteger("#number");
+            //Sort array
+	        arr.sort();
+
+	        var elementMin= 0;
+	        var elementMax = arr.length-1;
+	        var elementMiddle = 0;
+
+	        while (elementMax>=elementMin){
+	            elementMiddle = Math.floor((elementMin+elementMax)/2);
+	            if (arr[elementMiddle] < element){
+	                elementMin = elementMiddle + 1;
+	            }
+	            else if (arr[elementMiddle] > element){
+	                    elementMax = elementMiddle - 1;
+	            }
+	            else{
+	                for (var i = 0; i < arr.length; i++){ 
+                            jsConsole.writeLine(arr[i]+" ");
+	                }
+	                jsConsole.writeLine("The index of given element is: "+ elementMiddle);
+	                break;
+	            }
+            }
+        }
+	</script>
+</body>
+</html>

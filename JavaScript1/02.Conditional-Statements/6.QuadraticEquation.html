@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>6. Quadratic Equation</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First coefficient: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second coefficient: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+    <label for="tb-third">Third coefficient: </label>
+	<input type="text" id="tb-third"/>
+	<br />
+	<a href="#" onclick="CalculateEquation()">Calculate</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function CalculateEquation() {
+	        var a = jsConsole.readFloat("#tb-first");
+	        var b = jsConsole.readFloat("#tb-second");
+	        var c = jsConsole.readFloat("#tb-third");
+
+	        var D = (b * b) - (4 * a * c);
+	        var x1 = ((-b) + (Math.sqrt(D))) / (2 * a);
+	        var x2 = ((-b) - (Math.sqrt(D))) / (2 * a);
+
+	        if (D > 0)
+	        {
+	            jsConsole.writeLine("The real roots of quadratic equation ax2+bx+c=0 are: " + x1 + x2);
+	        }
+	        else if (D < 0)
+	        {
+	            jsConsole.writeLine("There aren't real roots of quadratic equation ax2+bx+c=0");
+	        }
+	        else
+	        {
+	            jsConsole.writeLine("The real root of quadratic equation ax2+bx+c=0 is: " + x1);
+	        }
+	    }
+	</script>
+</body>
+</html>

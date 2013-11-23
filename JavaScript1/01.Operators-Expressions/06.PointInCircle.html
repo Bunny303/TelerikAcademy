@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>6. Check if given print (x,  y) is within a circle K(O, 5)</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="x">Input x: </label>
+	<input type="text" id="x"/>
+	<br />	
+    <label for="y">Input y: </label>
+	<input type="text" id="y"/>
+	<br />						  
+	<a href="#" onclick="onCheckPointBtnClick()">Check</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onCheckPointBtnClick() {
+	        var x = jsConsole.readFloat("#x");
+	        var y = jsConsole.readFloat("#y");
+	        var cirleRadius = 5;
+	        var d = (x * x) + (y * y);
+	        if (d <= (cirleRadius * cirleRadius)){
+	            jsConsole.writeLine("The given coordinates are within the circle");
+	        }
+	        else{
+	            jsConsole.writeLine("The given coordinates are outside of the circle");
+	        }    
+	    }
+	</script>
+</body>
+</html>

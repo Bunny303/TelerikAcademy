@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>3. Calculate rectangle's area</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="width">Input width: </label>
+	<input type="text" id="width"/>
+	<br />	
+    <label for="height">Input height: </label>
+	<input type="text" id="height"/>
+	<br />						  
+	<a href="#" onclick="onCalculateAreaBtnClick()">Calculate</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onCalculateAreaBtnClick() {
+	        var width = jsConsole.readFloat("#width");
+	        var height = jsConsole.readFloat("#height");
+	        var area = width*height;
+	        jsConsole.writeLine("The area is: " + area);
+	    }
+	</script>
+</body>
+</html>

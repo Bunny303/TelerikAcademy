@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>9. Check for given point (x, y) if it is within the circle and out of the rectangle</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="x">Input x: </label>
+	<input type="text" id="x"/>
+	<br />	
+    <label for="y">Input y: </label>
+	<input type="text" id="y"/>
+	<br />						  
+	<a href="#" onclick="onCheckPointBtnClick()">Check</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onCheckPointBtnClick() {
+	        var x = jsConsole.readFloat("#x");
+	        var y = jsConsole.readFloat("#y");
+	        if (((x - 1) * (x - 1) + (y - 1) * (y - 1)) < 9) {
+	            if ((y > 1) || (y < -1)) {
+	                jsConsole.writeLine("The given coordinates are outside of the rectangle");
+	            }
+	            else {
+	                if ((y < 1 || y > -1) && x < -1) {
+	                    jsConsole.writeLine("The given coordinates are outside of the rectangle");
+	                }
+	                else {
+	                    jsConsole.writeLine("The given coordinates are within the circle and within the rectangle");
+	                }
+	            }
+	        }
+	        else jsConsole.writeLine("The given coordinates are outside of the circle");
+	    }
+	</script>
+</body>
+</html>

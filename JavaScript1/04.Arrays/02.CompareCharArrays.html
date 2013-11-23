@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>2. Compare two char arrays</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="firstArray">Input first set of chars /separeted by ","/: </label>
+	<input type="text" id="firstArray"/>
+	<br />
+    <label for="secondArray">Input second set of chars /separeted by ","/: </label>
+	<input type="text" id="secondArray"/>
+	<br />							  
+	<a href="#" onclick="onCompareArrayBtnClick()">Compare</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	    function onCompareArrayBtnClick() {
+	        var firstArr = jsConsole.read("#firstArray").split(",",20);
+	        var secondArr = jsConsole.read("#secondArray").split(",",20);
+	        var isEqual = true;
+	        if (firstArr.length == secondArr.length) {
+	            for (var i = 0; i < firstArr.length; i++) {
+                    if (firstArr[i] != secondArr[i]){
+                        isEqual = false;
+                        break;
+	                }
+	            }
+	        }
+	        else {
+	            isEqual = false;
+	        }
+	        jsConsole.writeLine(isEqual);
+	    }
+	</script>
+</body>
+</html>

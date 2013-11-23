@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Count words</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <!--3. Write a function that finds all the occurrences of word in a text
+        - The search can case sensitive or case insensitive
+        - Use function overloading-->
+
+    <label for="text">Input text: </label>
+    <br />
+    <input type="text" id="text"/>
+	<br />
+    <label for="word">Input searching word: </label>
+    <br />
+    <input type="text" id="word"/>
+	<br />
+    <a href="#" onclick="countOccurenceWordOnBtnClick(sampleText, sampleWord)">Search case insensitive</a>
+    <br />
+    <a href="#" onclick="countOccurenceWordOnBtnClick(sampleText, sampleWord, true)">Search case sensitive</a>
+    <br />
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var isCaseSensitive = false;
+        var sampleText = jsConsole.read("#text");
+        var sampleWord = jsConsole.read("#word");
+        function countOccurenceWordOnBtnClick(sampleText, sampleWord, isCaseSensitive) {
+            isCaseSensitive = isCaseSensitive || false;
+            var counter = 0;
+            if (isCaseSensitive === false) {
+                var stringArray = sampleText.split(sampleWord); 
+                for (var str in stringArray) {
+                    counter++;
+                }
+                jsConsole.writeLine("Word \"" + sampleWord + "\" case insensitive: " + counter + " times")
+            }
+            else {
+                var index = sampleText.indexOf(sampleWord);
+                while (index >= 0) {
+                    counter++;
+                    index = sampleText.indexOf(sampleWord, index + 1);
+                }
+                jsConsole.writeLine("Word \"" + sampleWord + "\" case sensitive: " + counter + " times")
+            }
+        }
+    </script>
+</body>
+</html>

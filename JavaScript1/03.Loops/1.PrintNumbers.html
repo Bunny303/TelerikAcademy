@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>1. Print numbers 1..N</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="number">Input number: </label>
+	<input type="text" id="number"/>
+	<br />							  
+	<a href="#" onclick="onPrintNumbersBtnClick()">Print</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function onPrintNumbersBtnClick() {
+	        var number = jsConsole.readFloat("#number");
+	        for (var i = 0; i < number; i++) {
+	            jsConsole.writeLine(i + 1 + " ");
+	        }
+	    }
+	</script>
+</body>
+</html>

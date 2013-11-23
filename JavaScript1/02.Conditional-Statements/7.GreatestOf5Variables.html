@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>7. Calculate greatest of 5 variables</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First number: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second number: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+    <label for="tb-third">Third number: </label>
+	<input type="text" id="tb-third"/>
+	<br />
+    <label for="tb-fourth">Fourth number: </label>
+	<input type="text" id="tb-fourth"/>
+	<br />
+    <label for="tb-fifth">Fifth number: </label>
+	<input type="text" id="tb-fifth"/>
+	<br />
+	<a href="#" onclick="FindGreatestNumber()">Find</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function FindGreatestNumber() {
+	        var a = jsConsole.readInteger("#tb-first");
+	        var b = jsConsole.readFloat("#tb-second");
+	        var c = jsConsole.readFloat("#tb-third");
+	        var d = jsConsole.readFloat("#tb-fourth");
+	        var e = jsConsole.readFloat("#tb-fifth");
+
+	        if ((a >= b) && (a >= c) && (a >= d) && (a >= e)) {
+	            jsConsole.writeLine("The greatest number is : " + a);
+	        }
+	        else if ((b >= a) && (b >= c) && (b >= d) && (b >= e)) {
+	            jsConsole.writeLine("The greatest number is : " + b);
+	        }
+	        else if ((c >= a) && (c >= b) && (c >= d) && (c >= e)) {
+	            jsConsole.writeLine("The greatest number is : " + c);
+	        }
+	        else if ((d >= a) && (d >= b) && (d >= c) && (d >= e)) {
+	            jsConsole.writeLine("The greatest number is : " + d);
+	        }
+	        else {
+	            jsConsole.writeLine("The greatest number is : " + e);
+	        }
+	    }
+	</script>
+</body>
+</html>

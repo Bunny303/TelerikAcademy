@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>05. Sort array</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="arr">Input set of numbers /separeted by ","/: </label>
+	<input type="text" id="arr"/>
+	<br />
+	<a href="#" onclick="onSortBtnClick()">Sort and print</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>
+
+    <!--Sorting an array means to arrange its elements in increasing order. Write a script to sort an array. 
+        Use the "selection sort" algorithm: Find the smallest element, move it at the first position, 
+        find the smallest from the rest, move it at the second position, etc.-->		  
+	<script>
+	    function onSortBtnClick() {
+	        var arr = jsConsole.read("#arr").split(",", 20);
+	        var minElement = 0;
+	        var tempElement = 0;
+        
+	        //Compare first element with next elements, second element with next elements, etc.
+	        for (var i = 0; i < (arr.length-1); i++) {
+                minElement = i;
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[minElement]){
+                        minElement = j;
+	                }
+                }
+                //If minimum element is not on right position 
+                if (minElement != i) {
+                    tempElement = arr[minElement];
+                    arr[minElement] = arr[i];
+                    arr[i] = tempElement;
+                }
+            }
+            //Print sort array
+            for (var i = 0; i < arr.length; i++){
+                jsConsole.write(arr[i]+" ");
+            }
+        }
+	</script>
+</body>
+</html>

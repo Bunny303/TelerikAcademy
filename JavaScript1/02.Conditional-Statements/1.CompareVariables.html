@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>1. Compare Variables</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <label for="tb-first">First number: </label>
+	<input type="text" id="tb-first"/>
+	<br />							  
+	<label for="tb-second">Second number: </label>
+	<input type="text" id="tb-second"/>
+	<br />
+	<a href="#" onclick="onCompareButtonClick()">Compare</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+
+	    function onCompareButtonClick() {
+	        var first = jsConsole.readFloat("#tb-first");
+	        var second = jsConsole.readFloat("#tb-second");
+	        
+	        if (first > second) {
+	            var temp = first;
+	            first = second;
+	            second = temp;
+	        }
+
+	        jsConsole.writeLine("First number is: " + first);
+	        jsConsole.writeLine("Second number is: " + second);
+	    }
+	</script>
+</body>
+</html>
