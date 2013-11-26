@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SupermarketDB.Models;
 using System.Data.Entity;
 

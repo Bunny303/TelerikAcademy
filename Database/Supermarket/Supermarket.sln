@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketDB.Models", "SupermarketDB.Models\SupermarketDB.Models.csproj", "{E7E8DDCA-2F53-4266-BD57-4AD594F28474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketDB.Data", "SupermarketDB.Data\SupermarketDB.Data.csproj", "{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketDB.Client", "SupermarketDB.Client\SupermarketDB.Client.csproj", "{C3A26CE5-6EEE-4D93-BEE8-0803A09C39B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketDBMySql", "SupermarketDBMySql\SupermarketDBMySql.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7E8DDCA-2F53-4266-BD57-4AD594F28474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E8DDCA-2F53-4266-BD57-4AD594F28474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E8DDCA-2F53-4266-BD57-4AD594F28474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E8DDCA-2F53-4266-BD57-4AD594F28474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A26CE5-6EEE-4D93-BEE8-0803A09C39B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A26CE5-6EEE-4D93-BEE8-0803A09C39B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A26CE5-6EEE-4D93-BEE8-0803A09C39B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A26CE5-6EEE-4D93-BEE8-0803A09C39B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

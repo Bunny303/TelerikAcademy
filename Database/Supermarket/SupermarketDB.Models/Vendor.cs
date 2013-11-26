@@ -4,20 +4,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SupermarketDB.Models
 {
-    public class Measure
+    public class Vendor
     {
         private IList<Product> products;
 
-        public Measure()
+        public Vendor()
         {
             this.products = new List<Product>();
         }
 
         [Key]
-        public int ID { get; set; }
+        public int VendorID { get; set; }
 
-        [Required]
-        public string MeasureName { get; set; }
+        public string VendorName { get; set; }
 
         public virtual IList<Product> Products
         {

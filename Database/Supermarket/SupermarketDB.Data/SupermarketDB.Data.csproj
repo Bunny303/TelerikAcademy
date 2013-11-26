@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9132D138-98E6-4549-9CB1-C10E035CE2E3}</ProjectGuid>
+    <ProjectGuid>{917A9F21-17E0-4972-81CC-4C9EC03B3CAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SupermarketDB.Data</RootNamespace>
@@ -46,18 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SupermarketContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SupermarketDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SupermarketDB.Models\SupermarketDB.Models.csproj">
+      <Project>{e7e8ddca-2f53-4266-bd57-4ad594f28474}</Project>
+      <Name>SupermarketDB.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SupermarketDB.Models\SupermarketDB.Models.csproj">
-      <Project>{1b8416f8-0fa8-4325-958a-0c6fb5f29297}</Project>
-      <Name>SupermarketDB.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

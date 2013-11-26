@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B8416F8-0FA8-4325-958A-0C6FB5F29297}</ProjectGuid>
+    <ProjectGuid>{E7E8DDCA-2F53-4266-BD57-4AD594F28474}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SupermarketDB.Models</RootNamespace>
