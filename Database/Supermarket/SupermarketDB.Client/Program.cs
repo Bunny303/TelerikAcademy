@@ -5,6 +5,7 @@ using SupermarketDB.Models;
 using System.Data.Entity;
 using MySql.Data.MySqlClient;
 using SupermarketModelMySql;
+using System.IO;
 
 namespace SupermarketDB.Client
 {
@@ -17,56 +18,61 @@ namespace SupermarketDB.Client
             var db = new SupermarketContext();
             string conStr = "Server=localhost; Port=3306; Database=supermarketdb; Uid=root; Pwd=6okolad; pooling=true";
             SupermarketModel mySqlDB = new SupermarketModel(conStr);
-
+            
+            //db.Database.Delete();
             TransferData(mySqlDB, db);
+            TransferDataConnTable(mySqlDB, db);
+            db.Database.Connection.Close();
+
+            //Unpack data from zip file
+            ZipDataReader.ExtractData(@"../../../Sample-Sales-Reports.zip", @"../../../Extracted Files");
+            ExcelDataReader.TransferDataFromExcelToDB(db, "../../../Extracted Files");
+            Directory.Delete(@"../../../Extracted Files", true);
         }
 
         // Copy data from auto-generates MySql classes to code first made classes for MS SQL Database
         public static void TransferData(SupermarketModel mySQL, SupermarketContext msSQL)
         {
-            //msSQL.Database.Delete();
-            using (msSQL)
+            foreach (var measure in mySQL.Measures)
             {
-                foreach (var product in mySQL.Products)
+                var newMeasure = new SupermarketDB.Models.Measure
                 {
-                    var newProduct = new SupermarketDB.Models.Product
-                    {
-                        ProductID = product.ProductID,
-                        VendorID = product.VendorID,
-                        MeasureID = product.MeasureID,
-                        ProductName = product.ProductName,
-                        BasePrice = product.BasePrice
-                    };
+                    MeasureID = measure.MeasureID,
+                    MeasureName = measure.MeasureName
+                };
 
-                    msSQL.Products.Add(newProduct);
-                    msSQL.SaveChanges();
-                }
+                msSQL.Measures.Add(newMeasure);
+                msSQL.SaveChanges();
+            }
 
-                //foreach (var measure in mySQL.Measures)
-                //{
-                //    var newMeasure = new SupermarketDB.Models.Measure
-                //    {
-                //        MeasureID = measure.MeasureID,
-                //        MeasureName = measure.MeasureName
-                //    };
+            foreach (var vendor in mySQL.Vendors)
+            {
+                var newVendor = new SupermarketDB.Models.Vendor
+                {
+                    VendorID = vendor.VendorID,
+                    VendorName = vendor.VendorName
+                };
 
-                //    msSQL.Measures.Add(newMeasure);
-                //    msSQL.SaveChanges();
-                //}
+                msSQL.Vendors.Add(newVendor);
+                msSQL.SaveChanges();
+            }
+        }
 
-                //foreach (var vendor in mySQL.Vendors)
-                //{
-                //    var newVendor = new SupermarketDB.Models.Vendor
-                //    {
-                //        VendorID = vendor.VendorID,
-                //        VendorName = vendor.VendorName
-                //    };
+        public static void TransferDataConnTable(SupermarketModel mySQL, SupermarketContext msSQL)
+        {
+            foreach (var product in mySQL.Products)
+            {
+                var newProduct = new SupermarketDB.Models.Product
+                {
+                    ProductID = product.ProductID,
+                    VendorID = product.VendorID,
+                    MeasureID = product.MeasureID,
+                    ProductName = product.ProductName,
+                    BasePrice = product.BasePrice
+                };
 
-                //    msSQL.Vendors.Add(newVendor);
-                //    msSQL.SaveChanges();
-                //}
-
-
+                msSQL.Products.Add(newProduct);
+                msSQL.SaveChanges();
             }
         }
         
