@@ -20,14 +20,17 @@ namespace SupermarketDB.Client
             SupermarketModel mySqlDB = new SupermarketModel(conStr);
             
             //db.Database.Delete();
-            TransferData(mySqlDB, db);
-            TransferDataConnTable(mySqlDB, db);
-            db.Database.Connection.Close();
+            //TransferData(mySqlDB, db);
+            //TransferDataConnTable(mySqlDB, db);
+            //db.Database.Connection.Close();
 
-            //Unpack data from zip file
-            ZipDataReader.ExtractData(@"../../../Sample-Sales-Reports.zip", @"../../../Extracted Files");
-            ExcelDataReader.TransferDataFromExcelToDB(db, "../../../Extracted Files");
-            Directory.Delete(@"../../../Extracted Files", true);
+            ////Unpack data from zip file
+            //ZipDataReader.ExtractData(@"../../../Sample-Sales-Reports.zip", @"../../../Extracted Files");
+            //ExcelDataReader.TransferDataFromExcelToDB(db, "../../../Extracted Files");
+            //Directory.Delete(@"../../../Extracted Files", true);
+
+            //Create Pdf File
+            CreatePdf.AddDataToPdf(db);
         }
 
         // Copy data from auto-generates MySql classes to code first made classes for MS SQL Database

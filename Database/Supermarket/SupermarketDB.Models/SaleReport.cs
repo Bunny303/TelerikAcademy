@@ -18,6 +18,8 @@ namespace SupermarketDB.Models
 
         public int ProductID { get; set; }
 
+        public virtual Product Product { get; set; }
+
         public int Quantity { get; set; }
 
         public decimal UnitPrice { get; set; }
@@ -27,11 +29,6 @@ namespace SupermarketDB.Models
         public string SupermarketName { get; set; }
 
         public DateTime ReportDate { get; set; }
-
-        public virtual IList<Product> Products
-        {
-            get { return products; }
-            set { products = value; }
-        }
+                
     }
 }
