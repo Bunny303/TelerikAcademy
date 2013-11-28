@@ -29,8 +29,11 @@ namespace SupermarketDB.Client
             //ExcelDataReader.TransferDataFromExcelToDB(db, "../../../Extracted Files");
             //Directory.Delete(@"../../../Extracted Files", true);
 
-            //Create Pdf File
-            CreatePdf.AddDataToPdf(db);
+            ////Create Pdf File
+            //CreatePdf.AddDataToPdf(db);
+
+            //Create XML File
+            CreateXMLDocument.AddDataToXML(db);
         }
 
         // Copy data from auto-generates MySql classes to code first made classes for MS SQL Database
