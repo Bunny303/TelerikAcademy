@@ -14,18 +14,10 @@ namespace Music.Models
             this.songs = new HashSet<Song>();
         }
 
-        public virtual ICollection<Artist> Artists
-        {
-            get { return artists; }
-            set { artists = value; }
-        }
-        
-        public virtual ICollection<Song> Songs
-        {
-            get { return songs; }
-            set { songs = value; }
-        }
+        public virtual ICollection<Artist> Artists { get; set; }
                 
+        public virtual ICollection<Song> Songs { get; set; }
+                        
         public int AlbumId { get; set; }
         
         public string Title { get; set; }

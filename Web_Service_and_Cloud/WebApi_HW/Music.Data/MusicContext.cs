@@ -14,6 +14,10 @@ namespace Music.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Song> Songs { get; set; }
 
-        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

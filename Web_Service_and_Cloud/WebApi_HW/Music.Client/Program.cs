@@ -12,46 +12,119 @@ namespace Music.Client
 {
     public class Program
     {
-        private static readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:5040/api/") };
+        public static readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:5040/api/") };
 
         static void Main()
         {
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //// Test Post method in Albums
-            //AddNewAlbum("NewAlbumName", "2011", "Goshko");   
-       
-            ////Test Get methods in Albums
-            //ViewAlbum();
-            //ViewAlbum(1);
-
-            ////Test Put method in Albums
-            //UpdateAlbum(7, "ChangeName", "1999", "Ivancho");
-
-            ////Test Delete method in Albums
-            //DeleteAlbum(2);
-
-            ////Test methods in Artist
-            //AddNewArtist("Kumba", "Zimbabve", "15/06/1988");
-            //AddNewArtist("Pumba", "Japan", "15/06/2000");
-            //ViewArtist();
-            //ViewArtist(9);
-            //UpdateArtist(5, "NewKumba", "Zimbabve", "15/06/1988");
-            //DeleteArtist(7);
-
-        }
-
-        private static void AddNewAlbum(string title, string year, string producer)
-        {
-            Album newAlbum = new Album
+            Album album = new Album
             {
-                Title = title,
-                Year = year,
-                Producer = producer
+                Title = "Album title 7",
+                Year = "2000",
+                Producer = "Producer 7"
             };
 
-            HttpResponseMessage response = client.PostAsJsonAsync("Albums", newAlbum).Result; 
+            AddAlbum(album);
+
+            Console.WriteLine("Show all albums:");
+            foreach (var a in GetAlbums())
+            {
+                Console.WriteLine("{0} {1} {2} {3}", a.AlbumId, a.Title, a.Year, a.Producer);
+            }
+
+            Console.WriteLine("Show album:");
+            var currentAlbum = GetAlbum(3);
+            Console.WriteLine("{0} {1} {2} {3}", currentAlbum.AlbumId, currentAlbum.Title, currentAlbum.Year, currentAlbum.Producer);
+
+            DeleteAlbum(8);
+            DeleteAlbum(7);
+            DeleteAlbum(6);
+
+            Console.WriteLine("Update album:");
+
+            Album albumUpdated = new Album
+            {
+                AlbumId = 5,
+                Title = "Album title 7",
+                Year = "2000",
+                Producer = "Producer 7"
+            };
+            UpdateAlbum(5, albumUpdated);
+
+            Artist artist = new Artist
+            {
+                Name = "Name3",
+                Country = "Country3",
+                DateOfBirth = DateTime.Parse("30/05/1988"),
+            };
+
+            AddArtist(artist);
+
+            Console.WriteLine("Show all artists:");
+            foreach (var ar in GetArtists())
+            {
+                Console.WriteLine("{0} {1} {2} {3}", ar.ArtistId, ar.Name, ar.Country, ar.DateOfBirth);
+            }
+
+            Console.WriteLine("Show artist:");
+            var currentArtist = GetArtist(2);
+            Console.WriteLine("{0} {1} {2} {3}", currentArtist.ArtistId, currentArtist.Name, currentArtist.Country, currentArtist.DateOfBirth);
+
+            Console.WriteLine("Update album:");
+            var artistUpdate = new Artist
+            {
+                ArtistId = 2,
+                Name = "Name22",
+                Country = "Country22",
+                DateOfBirth = DateTime.Parse("30/05/1988"),
+            };
+            UpdateArtist(2, artistUpdate);
+
+            DeleteArtist(1);
+
+            Song song = new Song
+            {
+                Title = "Song55",
+                Genre = "mixed",
+                Year = "2014",
+                AlbumId = 4,
+                ArtistId = 3
+            };
+            AddSong(song);
+
+            Console.WriteLine("Show all songs:");
+            foreach (var s in GetSongs())
+            {
+                Console.WriteLine("{0} {1} {2} {3} {4} {5}", s.SongId, s.Title, s.Genre, s.Year, s.Album.Title, s.Artist.Name);
+            }
+
+            Console.WriteLine("Show song:");
+            var currentSong = GetSong(3);
+            Console.WriteLine("{0} {1} {2} {3} {4} {5}", currentSong.SongId, currentSong.Title, currentSong.Genre, currentSong.Year, currentSong.Album.Title, currentSong.Artist.Name);
+
+            Console.WriteLine("Update song:");
+            Song songUpdated = new Song
+            {
+                SongId = 4,
+                Title = "Song10",
+                Genre = "mixed",
+                Year = "2014",
+                AlbumId = 4,
+                ArtistId = 3
+            };
+            UpdateSong(4, songUpdated);
+
+            DeleteSong(5);
+
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+        }
+
+        private static void AddAlbum(Album album)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync("Albums", album).Result;
+            
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Album added!");
@@ -62,62 +135,44 @@ namespace Music.Client
             }
         }
 
-        private static void ViewAlbum(params int[] id)
+        private static IEnumerable<Album> GetAlbums()
         {
-            if (id == null || id.Length == 0)
+            HttpResponseMessage response = client.GetAsync("Albums").Result;
+            if (response.IsSuccessStatusCode)
             {
-                HttpResponseMessage response = client.GetAsync("Albums").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var albums = response.Content.ReadAsAsync<IEnumerable<Album>>().Result;
-                    foreach (var album in albums)
-                    {
-                        Console.WriteLine("{0} {1} {2} {3}", album.AlbumId, album.Title, album.Year, album.Producer);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-                }
-            }
-            else if (id.Length == 1)
-            {
-                string url = "Albums/" + id[0];
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    Album album = response.Content.ReadAsAsync<Album>().Result;
-                    Console.WriteLine("{0} {1} {2} {3}", album.AlbumId, album.Title, album.Year, album.Producer);
-
-                }
-                else
-                {
-                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-                }
+                var albums = response.Content.ReadAsAsync<IEnumerable<Album>>().Result;
+                return albums;
             }
             else
             {
-                throw new ArgumentException("The argument must be only one!");
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
             }
         }
 
-        private static void UpdateAlbum(int id, string title, string year, string producer)
+        private static Album GetAlbum(int id)
         {
-            Album updatedAlbum = new Album
-            {
-                AlbumId = id,
-                Title = title,
-                Year = year,
-                Producer = producer
-            };
-            
             string url = "Albums/" + id;
-            HttpResponseMessage response = client.PutAsJsonAsync(url, updatedAlbum).Result;
+            HttpResponseMessage response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Album changed");
-                ViewAlbum(id);
+                Album album = response.Content.ReadAsAsync<Album>().Result;
+                return album;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
+            }
+        }
 
+        private static void UpdateAlbum(int id, Album album)
+        {
+            string url = "Albums/" + id;
+            HttpResponseMessage response = client.PutAsJsonAsync(url, album).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Album with id {0} updated", id);
             }
             else
             {
@@ -131,7 +186,7 @@ namespace Music.Client
             HttpResponseMessage response = client.DeleteAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Album deleted!");
+                Console.WriteLine("Album with id {0} deleted!", id);
             }
             else
             {
@@ -139,16 +194,10 @@ namespace Music.Client
             }
         }
 
-        private static void AddNewArtist(string name, string country, string dateOfBirth)
+        private static void AddArtist(Artist artist)
         {
-            Artist newArtist = new Artist
-            {
-                Name = name,
-                Country = country,
-                DateOfBirth = DateTime.Parse(dateOfBirth)
-            };
+            HttpResponseMessage response = client.PostAsJsonAsync("Artists", artist).Result;
 
-            HttpResponseMessage response = client.PostAsJsonAsync("Artists", newArtist).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Artist added!");
@@ -159,62 +208,45 @@ namespace Music.Client
             }
         }
 
-        private static void ViewArtist(params int[] id)
+        private static IEnumerable<Artist> GetArtists()
         {
-            if (id == null || id.Length == 0)
+            HttpResponseMessage response = client.GetAsync("Artists").Result;
+            if (response.IsSuccessStatusCode)
             {
-                HttpResponseMessage response = client.GetAsync("Artists").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var artists = response.Content.ReadAsAsync<IEnumerable<Artist>>().Result;
-                    foreach (var artist in artists)
-                    {
-                        Console.WriteLine("{0} {1} {2} {3}", artist.ArtistId, artist.Name, artist.Country, artist.DateOfBirth);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-                }
-            }
-            else if (id.Length == 1)
-            {
-                string url = "Artists/" + id[0];
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    Artist artist = response.Content.ReadAsAsync<Artist>().Result;
-                    Console.WriteLine("{0} {1} {2} {3}", artist.ArtistId, artist.Name, artist.Country, artist.DateOfBirth);
-
-                }
-                else
-                {
-                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-                }
+                var artists = response.Content.ReadAsAsync<IEnumerable<Artist>>().Result;
+                return artists;
             }
             else
             {
-                throw new ArgumentException("The argument must be only one!");
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
             }
         }
 
-        private static void UpdateArtist(int id, string name, string country, string dateOfBirth)
+        private static Artist GetArtist(int id)
         {
-            Artist updateArtist = new Artist
-            {
-                ArtistId = id,
-                Name = name,
-                Country = country,
-                DateOfBirth = DateTime.Parse(dateOfBirth)
-            };
-
             string url = "Artists/" + id;
-            HttpResponseMessage response = client.PutAsJsonAsync(url, updateArtist).Result;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Artist artist = response.Content.ReadAsAsync<Artist>().Result;
+                return artist;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
+            }
+        }
+
+        private static void UpdateArtist(int id, Artist artist)
+        {
+            string url = "Artists/" + id;
+
+            HttpResponseMessage response = client.PutAsJsonAsync(url, artist).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Artist with id {0} changed", id);
-                ViewArtist(id);
-
             }
             else
             {
@@ -225,10 +257,85 @@ namespace Music.Client
         private static void DeleteArtist(int id)
         {
             string url = "Artists/" + id;
+
             HttpResponseMessage response = client.DeleteAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Artist deleted!");
+                Console.WriteLine("Artist with id {0} deleted!", id);
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        private static void AddSong(Song song)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync("Songs", song).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Song added!");
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        private static IEnumerable<Song> GetSongs()
+        {
+            HttpResponseMessage response = client.GetAsync("Songs").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var songs = response.Content.ReadAsAsync<IEnumerable<Song>>().Result;
+                return songs;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
+            }
+        }
+
+        private static Song GetSong(int id)
+        {
+            string url = "Songs/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Song song = response.Content.ReadAsAsync<Song>().Result;
+                return song;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                return null;
+            }
+        }
+
+        private static void UpdateSong(int id, Song song)
+        {
+            string url = "Songs/" + id;
+
+            HttpResponseMessage response = client.PutAsJsonAsync(url, song).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Song with id {0} changed", id);
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        private static void DeleteSong(int id)
+        {
+            string url = "Songs/" + id;
+            HttpResponseMessage response = client.DeleteAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Song with id {0} deleted!", id);
             }
             else
             {

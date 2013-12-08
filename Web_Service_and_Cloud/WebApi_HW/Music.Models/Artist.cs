@@ -13,8 +13,8 @@ namespace Music.Models
 
         public DateTime? DateOfBirth { get; set; }
 
-        public virtual IList<Album> Albums { get; set; }
-                
-        public virtual IList<Song> Songs { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
+
+        public virtual ICollection<Song> Songs { get; set; }
     }
 }

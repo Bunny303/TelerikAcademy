@@ -2,6 +2,8 @@
 using Music.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,9 +18,9 @@ namespace Music.Services.Controllers
         // GET api/songs
         public IEnumerable<Song> Get()
         {
-            var data = from item in db.Songs.Include("Artists").Include("Albums")
+            var data = from item in db.Songs
                        select item;
-            return data.ToList();
+            return data;
         }
 
         // GET api/songs/5
@@ -36,16 +38,30 @@ namespace Music.Services.Controllers
         }
 
         // PUT api/songs/5
-        public void Put(int id, [FromBody]Song value)
+        public HttpResponseMessage Put(int id, [FromBody]Song value)
         {
-            var data = db.Songs.Find(id);
-            data.SongId = value.SongId;
-            data.Title = value.Title;
-            data.Year = value.Year;
-            data.Genre = value.Genre;
-            data.Album = value.Album;
-            data.Artist = value.Artist;
-            db.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            if (id != value.SongId)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            db.Entry(value).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/songs/5

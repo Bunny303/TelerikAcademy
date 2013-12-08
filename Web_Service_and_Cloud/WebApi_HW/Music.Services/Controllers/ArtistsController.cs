@@ -2,6 +2,8 @@
 using Music.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,7 +20,7 @@ namespace Music.Services.Controllers
         {
             var data = from item in db.Artists.Include("Albums").Include("Songs")
                        select item;
-            return data.ToList();
+            return data;
         }
 
         // GET api/artists/5
@@ -36,16 +38,30 @@ namespace Music.Services.Controllers
         }
 
         // PUT api/artists/5
-        public void Put(int id, [FromBody]Artist value)
+        public HttpResponseMessage Put(int id, [FromBody]Artist value)
         {
-            var data = db.Artists.Find(id);
-            data.ArtistId = value.ArtistId;
-            data.Name = value.Name;
-            data.Country = value.Country;
-            data.DateOfBirth = value.DateOfBirth;
-            data.Albums = value.Albums;
-            data.Songs = value.Songs;
-            db.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            if (id != value.ArtistId)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            db.Entry(value).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/artists/5

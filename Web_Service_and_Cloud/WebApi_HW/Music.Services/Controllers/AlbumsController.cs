@@ -6,19 +6,26 @@ using System.Net.Http;
 using System.Web.Http;
 using Music.Models;
 using Music.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Music.Services.Controllers
 {
     public class AlbumsController : ApiController
     {
         private MusicContext db = new MusicContext();
+
+        public AlbumsController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
                 
         // GET api/albums
         public IEnumerable<Album> Get()
         {
             var data = from item in db.Albums.Include("Artists").Include("Songs")
                        select item;
-            return data.ToList();
+            return data;
         }
 
         // GET api/albums/5
@@ -33,30 +40,43 @@ namespace Music.Services.Controllers
         }
 
         // POST api/albums
-        public void Post([FromBody]Album value)
+        public void Post(Album value)
         {
             db.Albums.Add(value);
             db.SaveChanges();
         }
 
         // PUT api/albums/5
-        public void Put(int id, [FromBody]Album value)
+        public HttpResponseMessage Put(int id, Album value)
         {
-            //Is this the best way?
-            var data = db.Albums.Find(id);
-            data.AlbumId = value.AlbumId;
-            data.Title = value.Title;
-            data.Year = value.Year;
-            data.Producer = value.Producer;
-            data.Artists = value.Artists;
-            data.Songs = value.Songs;
-            db.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            if (id != value.AlbumId)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            db.Entry(value).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/albums/5
         public void Delete(int id)
         {
-            //This is faster
+            //This is faster?
             db.Database.ExecuteSqlCommand(
                 "DELETE FROM Albums WHERE AlbumId = {0}", id);
             db.SaveChanges();
