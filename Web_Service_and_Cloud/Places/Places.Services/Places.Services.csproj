@@ -169,12 +169,17 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\VotesController.cs" />
+    <Compile Include="DependencyResolver\DbDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryFullModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\CommentFullModel.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\PlaceFullModel.cs" />
     <Compile Include="Models\PlaceModel.cs" />
+    <Compile Include="Models\VoteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,11 +15,12 @@ namespace Places.Services.Controllers
     {
         private IRepository<Category> categoryRepository;
 
-        public CategoriesController()
-        {
-            var dbContext = new PlacesContext();
-            this.categoryRepository = new DbCategoriesRepository(dbContext);
-        }
+        // Use Iok - dependency resolver
+        //public CategoriesController()
+        //{
+        //    var dbContext = new PlacesContext();
+        //    this.categoryRepository = new DbCategoriesRepository(dbContext);
+        //}
 
         public CategoriesController(IRepository<Category> repository)
         { 
@@ -30,15 +31,18 @@ namespace Places.Services.Controllers
         public IEnumerable<CategoryModel> GetAll()
         {
             var categoryEntities =  this.categoryRepository.All();
-            var categoryModel = from categoryEntity in categoryEntities
-                                select new CategoryModel() 
+
+            var categoryModel = new List<CategoryModel>();
+            foreach (var categoryEntity in categoryEntities)
+            {
+                categoryModel.Add(new CategoryModel()
                                 {
                                     Id = categoryEntity.Id,
                                     Name = categoryEntity.Name,
-                                    PlacesCount = (categoryEntity.Places!=null)? categoryEntity.Places.Count :0
-                                };
-
-            return categoryModel.ToList(); 
+                                    PlacesCount = (categoryEntity.Places != null) ? categoryEntity.Places.Count : 0
+                                });
+            }
+            return categoryModel; 
         }
 
         [HttpGet]

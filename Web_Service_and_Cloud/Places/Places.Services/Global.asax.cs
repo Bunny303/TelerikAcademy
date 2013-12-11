@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Places.Services.DependencyResolver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,9 @@ namespace Places.Services
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var config = GlobalConfiguration.Configuration;
+            config.DependencyResolver = new DbDependencyResolver();
         }
     }
 }
