@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>All execises from Underscore.js homework</title>
+    <script src="scripts/class.js"></script>
+    <script src="scripts/underscore.js"></script>
+</head>
+<body>
+    <script>
+        var Student = Class.create({
+            init: function (fname, lname, age) {
+                this.fname = fname;
+                this.lname = lname;
+                this.age = age;
+                this.fullName = this.fname + " " + this.lname;
+            }
+        });
+
+        var students = [
+			new Student("Ivan", "Georgiev", 15),
+			new Student("Dragan", "Koichev", 17),
+			new Student("Mimi", "Chehova", 30),
+			new Student("Eli", "Pencheva", 22),
+            new Student("Eli", "Minkova", 19),
+			new Student("Ivaylo", "Petkov", 18)];
+
+        console.log("1. Write a method that from a given array of students finds all students whose first name" +
+        "is before its last name alphabetically. Print the students in descending order by full name.");
+
+        var selectedStudents = _.chain(students)
+                                .filter(function (student) {
+                                    return student.fname < student.lname;
+                                })
+                                .sortBy('fullName')
+                                .reverse()
+                                .each(function (student) {
+                                    console.log(student.fullName)
+                                });
+        
+        console.log("2. Write function that finds the first name and last name of all students with age between 18 and 24.");
+        
+        selectedStudents = _.filter(students, function (student) {
+            return student.age > 18 && student.age < 24
+        });
+        _.each(selectedStudents, function (student) {
+            console.log(student.fullName + " " + student.age)
+        });
+
+        console.log("4. Write a function that by a given array of animals, groups them by species and sorts them by number of legs");
+
+        var Animal = Class.create({
+            init: function (name, numberOfLegs) {
+                this.name = name;
+                this.numberOfLegs = numberOfLegs;
+            }
+        });
+
+        var animals = [
+			new Animal("Dog", 4),
+            new Animal("Rabbit", 4),
+            new Animal("Rabbit", 4),
+            new Animal("Cat", 4),
+            new Animal("Cat", 4),
+            new Animal("Cat", 4),
+			new Animal("Penguin", 2),
+            new Animal("Penguin", 2),
+			new Animal("Spider", 8),
+            new Animal("Scorpion", 8),
+			new Animal("Centipede", 100)];
+
+        var groupedAnimals = _.chain(animals).groupBy('name').sortBy('numberOfLegs').each(function (group) {
+            console.log(group)
+        });
+        
+        console.log("5. By a given array of animals, find the total number of legs");
+
+        var animalLegs = _.pluck(animals, 'numberOfLegs');
+        var totalLegs = 0;
+        _.each(animalLegs, function (legs) {
+            totalLegs += parseInt(legs)
+        });
+        console.log("Total legs: " + totalLegs);
+        
+        console.log("6. By a given collection of books, find the most popular author (the author with the biggest number of books)");
+
+        var Book = Class.create({
+            init: function (name, author) {
+                this.name = name;
+                this.author = author;
+            }
+        });
+
+        var books = [
+			new Book("Book1", "Author1"),
+            new Book("Book2", "Author2"),
+            new Book("Book3", "Author1"),
+            new Book("Book4", "Author4")];
+
+        var groupedBooks = _.groupBy(books,'author');
+        var author = _.sortBy(groupedBooks, function (obj) {
+            _.values(obj).length
+        });
+               
+        console.log(_.last(author));
+    </script>
+</body>
+</html>
