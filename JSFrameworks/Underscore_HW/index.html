@@ -96,12 +96,16 @@
             new Book("Book3", "Author1"),
             new Book("Book4", "Author4")];
 
-        var groupedBooks = _.groupBy(books,'author');
-        var author = _.sortBy(groupedBooks, function (obj) {
-            _.values(obj).length
+        var groupedBooks = _.groupBy(books, 'author');
+        var mappedBooks = _.map(groupedBooks, function (value, key, list) {
+            return { "author": key, "booksNumber": value.length };
+        });
+
+        var author = _.max(mappedBooks, function (author) {
+            return author.booksNumber;
         });
                
-        console.log(_.last(author));
+        console.log(author);
     </script>
 </body>
 </html>
