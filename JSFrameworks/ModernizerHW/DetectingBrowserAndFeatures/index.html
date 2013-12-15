@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.0.3.js"></script>
+    <script src="Scripts/modernizr-latest.js"></script>
+    <script src="Scripts/ua-parser.min.js"></script>
+    <style>
+        table, tr, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <table id="features">
+        <tr>
+            <th>Feature</th>
+            <th>Available?</th>
+        </tr>
+    </table>
+    <script>
+        var parser = new UAParser();
+        var result = parser.getResult();
+        $("#content").append("<div><strong>Browser:</strong> " + result.browser.name + " " + result.browser.version + "</div>");
+        $("#content").append("<div><strong>OS:</strong> " + result.os.name + " " + result.os.version + "</div>");
+        if (result.device.model != undefined) {
+            $("#content").append("<div><strong>Device:</strong> " + result.device.model + " " + result.device.type + " " + result.device.vendor + "</div>");
+        }
+        else {
+            $("#content").append("<div><strong>Device:</strong> undefined</div>");
+        }
+
+        var target = $("#features");
+        var traverse = function (object, prefix) {
+            prefix = prefix ? prefix + '.' : '';
+            for (property in object) {
+                if (typeof object[property] == 'object') {
+                    traverse(object[property], prefix + property);
+                } else if (typeof object[property] == 'boolean') {
+                    var
+                    tr = $('<tr />'),
+                    name = $('<th />', {
+                        text: prefix + property
+                    }),
+                    value = $('<td />', {
+                        text: object[property] ? 'Yes' : 'Nope'
+                    });
+                    target.append(tr.append(name).append(value));
+                }
+            }
+        };
+        traverse(Modernizr, 'Modernizr');
+        
+    </script>
+</body>
+</html>
