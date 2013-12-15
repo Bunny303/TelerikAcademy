@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+    <script src="Scripts/jquery-2.0.3.js"></script>
+	<script src="Scripts/class.js"></script>
+	<script src="Scripts/mustache.js"></script>
+    <script src="Scripts/table-view.js"></script>
+</head>
+<body>
+	<script type="x-mustache-template" id="person-template">        
+        <a class = "clickable" id="{{id}}">
+            <strong>{{firstName}} {{lastName}}</strong><br />
+        </a>
+    </script>
+
+    <script type="x-mustache-template" id="marks-template">        
+        <ul>
+                {{#.}} 
+                        <li>
+                                {{subject}}: <strong>{{score}}</strong>                                                        
+                        </li>
+                {{/.}}
+        </ul>                        
+    </script>
+
+	<div id="content"></div>
+    <div id="marks"></div>
+
+	<script>
+	    var renderResult = function (result) {
+	        var personTemplate = Mustache.compile(document.getElementById("person-template").innerHTML);
+	        var tableView = controls.getTableView(result, result.length, 3);
+	        var tableViewHtml = tableView.render(personTemplate);
+	        document.getElementById("content").innerHTML = tableViewHtml;
+	    };
+	    var ajaxCallError = function (error) {
+	        alert(error);
+	    };
+	    
+	    $.ajax({
+	        url: "api/students",
+	        type: "GET",
+	        datatype: "json",
+	        success: renderResult,
+	        error: ajaxCallError
+	    });
+
+	    var renderMarks = function (result) {
+	        var markTemplate = Mustache.compile(document.getElementById("marks-template").innerHTML);
+	        var tableView = controls.getTableView(result, 3, 3);
+	        var tableViewHtml = tableView.render(markTemplate);
+	        document.getElementById("marks").innerHTML = tableViewHtml;
+	    };
+
+	    $("#content").on("click", "a", function (event) {
+	        var element = $(this);
+	        var idElement = element.attr("id");
+	        $.ajax({
+	            url: "api/students/" + idElement,
+	            type: "GET",
+	            datatype: "json",
+	            success: renderMarks,
+	            error: ajaxCallError
+	        });
+	        
+	    });
+
+	    
+
+	</script>
+</body>
+</html>
